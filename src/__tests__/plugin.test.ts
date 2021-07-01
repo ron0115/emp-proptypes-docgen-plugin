@@ -81,6 +81,4 @@ const getConfig = (
 // TODO: What else to test and how?
 test("default options", async () => {
   const result = await compile(getConfig({}));
-
-  // expect(result).toContain("STORYBOOK_REACT_CLASSES");
 });

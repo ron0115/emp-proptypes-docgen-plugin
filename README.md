@@ -41,31 +41,14 @@ module.exports = {
 
 This plugins support all parser options from [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript#parseroptions) and all of the following options
 
-| Option               | Type           | Description                                                                                                                                         | Default                   |
-| -------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| tsconfigPath         | string         | Specify the location of the `tsconfig.json` to use.                                                                                                 | `null`                    |
-| compilerOptions      | object         | Specify compiler options. Cannot be used with `tsconfigPath`                                                                                        | `null`                    |
-| docgenCollectionName | string or null | Specify the docgen collection name to use. All docgen information will be collected into this global object. Set to `null` to disable.              | `STORYBOOK_REACT_CLASSES` |
-| setDisplayName       | boolean        | Set the components' display name. If you want to set display names yourself or are using another plugin to do this, you should disable this option. | `true`                    |
-| typePropName         | string         | Specify the name of the property for docgen info prop type.                                                                                         | `type`                    |
-| exclude              | glob[]         | Glob patterns to ignore and not generate docgen information for. (Great for ignoring large icon libraries)                                          | `[]`                      |
-| include              | glob[]         | Glob patterns to generate docgen information for                                                                                                    | `['**/**.tsx']`           |
-
-## Debugging
-
-If you want to see how this plugins is including and excluding modules set the `DEBUG` environment variable.
-
-- `DEBUG=docgen:*` - All logs
-- `DEBUG=docgen:include` - Included modules
-- `DEBUG=docgen:exclude` - Excluded modules
-- `DEBUG=docgen:docs` - Generated docs
-
-```bash
-DEBUG=docgen:* npm run storybook
-```
-
-> Another great way of debugging your generated docs is to use a `debugger` statement in your component source file.
-> If you turn off source maps you will be able to see the code that this package generates.
+| Option          | Type    | Description                                                                                                                                         | Default         |
+| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| tsconfigPath    | string  | Specify the location of the `tsconfig.json` to use.                                                                                                 | `null`          |
+| compilerOptions | object  | Specify compiler options. Cannot be used with `tsconfigPath`                                                                                        | `null`          |
+| setDisplayName  | boolean | Set the components' display name. If you want to set display names yourself or are using another plugin to do this, you should disable this option. | `true`          |
+| typePropName    | string  | Specify the name of the property for docgen info prop type.                                                                                         | `type`          |
+| exclude         | glob[]  | Glob patterns to ignore and not generate docgen information for. (Great for ignoring large icon libraries)                                          | `[]`            |
+| include         | glob[]  | Glob patterns to generate docgen information for                                                                                                    | `['**/**.tsx']` |
 
 ## Prior Art
 

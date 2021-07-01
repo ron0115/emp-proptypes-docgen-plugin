@@ -6,7 +6,6 @@ export interface GeneratorOptions {
   filename: string;
   source: string;
   componentDocs: ComponentDoc[];
-  // docgenCollectionName: string | null;
   setDisplayName: boolean;
   typePropName: string;
 }

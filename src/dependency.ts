@@ -11,6 +11,7 @@ import NullDependency from "webpack/lib/dependencies/NullDependency.js";
 
 class DocGenDependency extends NullDependency {
   public codeBlock: string;
+  static Template: any;
 
   constructor(codeBlock: string) {
     super();
@@ -46,7 +47,6 @@ class DocGenTemplate extends NullDependency.Template
   };
 }
 
-// @ts-ignore TODO: How to type this correctly?
 DocGenDependency.Template = DocGenTemplate;
 
 // Default imports are tricky with CommonJS
