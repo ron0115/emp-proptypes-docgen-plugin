@@ -19,5 +19,5 @@ try {
 }
 
 export { PluginOptions } from "./plugin";
-export { plugin as ReactDocgenTypeScriptPlugin };
+export { plugin as empPropTypesDocgenPlugin };
 export default plugin;

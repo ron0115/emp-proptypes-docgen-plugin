@@ -91,7 +91,6 @@ function processModule(
   if (cached) {
     // eslint-disable-next-line
     // @ts-ignore
-    // eslint-disable-next-line
     debugInclude(`Got cached docgen for "${webpackModule.request}"`);
     // eslint-disable-next-line
     // @ts-ignore
@@ -261,7 +260,6 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
     const {
       tsconfigPath = "./tsconfig.json",
       compilerOptions: userCompilerOptions,
-      // docgenCollectionName,
       setDisplayName,
       typePropName,
       ...docgenOptions
@@ -286,7 +284,6 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
     return {
       docgenOptions,
       generateOptions: {
-        // docgenCollectionName: docgenCollectionName,
         setDisplayName: setDisplayName || true,
         typePropName: typePropName || "type",
       },
