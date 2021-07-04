@@ -120,12 +120,7 @@ function createPropDefinition(
         (typeof defaultValue.value === "string" ||
           typeof defaultValue.value === "number" ||
           typeof defaultValue.value === "boolean")
-        ? ts.createObjectLiteral([
-            ts.createPropertyAssignment(
-              ts.createIdentifier("value"),
-              ts.createLiteral(defaultValue.value)
-            ),
-          ])
+        ? ts.createLiteral(defaultValue.value)
         : ts.createNull()
     );
 
@@ -209,12 +204,32 @@ function createPropDefinition(
 
   const getEmpPropsType = (p: PropItem) => {
     const { name: typeName, value: typeValue } = p.type;
+    if (p.name.toLowerCase().includes("style")) console.log(p);
+    const isNumber = (n: string) =>
+      n === "number" ||
+      n === "number | undefined" ||
+      n.includes("string | number") ||
+      n.includes("number | string");
+    const isString = (n: string) =>
+      n === "string" ||
+      n === "string | undefined" ||
+      n === "any" ||
+      n === "ReactNode";
+    const isBoolean = (n: string) =>
+      n === "boolean" ||
+      n === "boolean | undefined" ||
+      n.includes('"true" | "false"');
+
+    const isStyle = (pitem: PropItem) =>
+      pitem.name.toLocaleLowerCase().includes("style") &&
+      !isBoolean(pitem.type.name);
 
     if (isSelectType(p)) return EmpPropTypes.Select;
-    if (typeName === "number") return EmpPropTypes.InputNumber;
-    if (typeName === "string") return EmpPropTypes.Input;
-    if (typeName === "boolean") return EmpPropTypes.Switch;
-
+    if (isNumber(typeName.toLowerCase())) return EmpPropTypes.InputNumber;
+    if (isBoolean(typeName.toLowerCase())) return EmpPropTypes.Switch;
+    if (isStyle(p)) return EmpPropTypes.StyleEdit;
+    // 最后才判断string
+    if (isString(typeName.toLowerCase())) return EmpPropTypes.Input;
     return EmpPropTypes.Input;
   };
   /**
