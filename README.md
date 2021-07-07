@@ -19,7 +19,7 @@ yarn add -D emp-proptypes-docgen-plugin
 
 ```javascript
 /**
- * 交友模板礼物图标
+ * 营收礼物图标
  */
 export const PropsIcon = (props: PropsIconType) => {}
 
@@ -27,7 +27,7 @@ export const PropsIcon = (props: PropsIconType) => {}
 
 PropsIcon.empPropTypes = {
   "defined": {
-    "description": "交友礼物图标"
+    "description": "营收礼物图标"
   },
   "name": "PropsIcon",
   "props": {...}
@@ -54,7 +54,7 @@ export const PropsIcon = ({
       ↓ ↓ ↓ ↓ ↓ ↓
 PropsIcon.empPropTypes = {
   "defined": {
-    "description": "交友礼物图标"
+    "description": "营收礼物图标"
   },
   "name": "PropsIcon",
   "props": {
@@ -92,6 +92,6 @@ module.exports = {
 };
 ```
 
-## 选项
+## About
 
 支持[react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript#parseroptions) 的所有参数透传。其他可用的配置项可以参考[react-docgen-typescript-plugin](https://github.com/hipstersmoothie/react-docgen-typescript-plugin)
