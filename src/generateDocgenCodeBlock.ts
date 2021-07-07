@@ -204,7 +204,6 @@ function createPropDefinition(
 
   const getEmpPropsType = (p: PropItem) => {
     const { name: typeName, value: typeValue } = p.type;
-    if (p.name.toLowerCase().includes("style")) console.log(p);
     const isNumber = (n: string) =>
       n === "number" ||
       n === "number | undefined" ||

@@ -19,5 +19,5 @@ try {
 }
 
 export { PluginOptions } from "./plugin";
-export { plugin as empPropTypesDocgenPlugin };
+export { plugin as EmpPropTypesDocgenPlugin };
 export default plugin;

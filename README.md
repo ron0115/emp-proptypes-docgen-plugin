@@ -2,7 +2,7 @@
   <img  height="200"
     src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png">
   <h1>emp-proptypes-docgen-plugin</h1>
-  <p>A webpack plugin to inject react typescript docgen information for empPropTypes.</p>
+  <p>通过 React Typescript Docgen 对象 生成 `empPropTypes` 并插入组件的一个webpack插件。</p>
 </div>
 
 ## Install
@@ -13,10 +13,65 @@ npm install --save-dev emp-proptypes-docgen-plugin
 yarn add -D emp-proptypes-docgen-plugin
 ```
 
-## Usage
+## Example
 
-> NOTE: The TypeScript compiler options `allowSyntheticDefaultImports` and `esModuleInterop` will make
-> `emp-proptypes-docgen-plugin` a lot harder! Turn them off for faster build times.
+#### 生成`empPropTypes.defined.description`
+
+```javascript
+/**
+ * 交友模板礼物图标
+ */
+export const PropsIcon = (props: PropsIconType) => {}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+PropsIcon.empPropTypes = {
+  "defined": {
+    "description": "交友礼物图标"
+  },
+  "name": "PropsIcon",
+  "props": {...}
+}
+```
+
+#### 生成`empPropTypes.props`
+
+```javascript
+// 通过类型获取`description`和`type`
+export type PropsIconType = {
+  /** 礼物id，用于获取礼物图标 */
+  propsId: number
+}
+// 通过defaultProps获取defaultValue
+PropsIcon.defaultProps = {
+  propsId: 12,
+}
+// 通过组件参数内联写法获取defaultValue
+export const PropsIcon = ({
+  propsId = 12
+}: PropsIconType) => {}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+PropsIcon.empPropTypes = {
+  "defined": {
+    "description": "交友礼物图标"
+  },
+  "name": "PropsIcon",
+  "props": {
+    "propsId": {
+      "defaultValue": 12,
+      "description": "礼物id，用于获取礼物图标",
+      "label": "propsId",
+      "required": false,
+      "type": "InputNumber"
+    },
+    "...": {...}
+  }
+}
+
+```
+
+## Usage
 
 ```ts
 const ts = require("typescript");
@@ -37,19 +92,6 @@ module.exports = {
 };
 ```
 
-### Options
+## 选项
 
-This plugins support all parser options from [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript#parseroptions) and all of the following options
-
-| Option          | Type    | Description                                                                                                                                         | Default         |
-| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| tsconfigPath    | string  | Specify the location of the `tsconfig.json` to use.                                                                                                 | `null`          |
-| compilerOptions | object  | Specify compiler options. Cannot be used with `tsconfigPath`                                                                                        | `null`          |
-| setDisplayName  | boolean | Set the components' display name. If you want to set display names yourself or are using another plugin to do this, you should disable this option. | `true`          |
-| typePropName    | string  | Specify the name of the property for docgen info prop type.                                                                                         | `type`          |
-| exclude         | glob[]  | Glob patterns to ignore and not generate docgen information for. (Great for ignoring large icon libraries)                                          | `[]`            |
-| include         | glob[]  | Glob patterns to generate docgen information for                                                                                                    | `['**/**.tsx']` |
-
-## Prior Art
-
-- [react-docgen-typescript-plugin](https://github.com/hipstersmoothie/react-docgen-typescript-plugin) - Webpack plugin to generate docgen information from Typescript React components.
+支持[react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript#parseroptions) 的所有参数透传。其他可用的配置项可以参考[react-docgen-typescript-plugin](https://github.com/hipstersmoothie/react-docgen-typescript-plugin)
