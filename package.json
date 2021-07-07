@@ -3,7 +3,7 @@
   "version": "0.0.4",
   "description": "A webpack plugin to inject react typescript docgen information in cweb.",
   "license": "MIT",
-  "author": "liangzhirong <liangzhirong@yy.com>",
+  "author": "liangzhirong <liangzr0115@gmail.com>",
   "main": "dist/index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
