@@ -213,7 +213,8 @@ function createPropDefinition(
       n === "string" ||
       n === "string | undefined" ||
       n === "any" ||
-      n === "ReactNode";
+      n === "ReactNode" ||
+      n === "ReactChild";
     const isBoolean = (n: string) =>
       n === "boolean" ||
       n === "boolean | undefined" ||

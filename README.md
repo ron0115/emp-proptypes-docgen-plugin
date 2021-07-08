@@ -13,6 +13,16 @@ npm install --save-dev emp-proptypes-docgen-plugin
 yarn add -D emp-proptypes-docgen-plugin
 ```
 
+## Support Props
+
+| Props 类型          | 表单控件              |
+| ------------------- | --------------------- |
+| string              | Input                 |
+| number              | InputNumber           |
+| boolean             | Switch                |
+| style               | StyleEdit(样式编辑器) |
+| enum , `'a' \| 'b'` | Select                |
+
 ## Example
 
 #### 生成`empPropTypes.defined.description`
