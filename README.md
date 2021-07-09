@@ -15,13 +15,14 @@ yarn add -D emp-proptypes-docgen-plugin
 
 ## Support Props
 
-| Props 类型          | 表单控件              |
-| ------------------- | --------------------- |
-| string              | Input                 |
-| number              | InputNumber           |
-| boolean             | Switch                |
-| style               | StyleEdit(样式编辑器) |
-| enum , `'a' \| 'b'` | Select                |
+| Props 类型             | 表单控件              |
+| ---------------------- | --------------------- |
+| string                 | Input                 |
+| number                 | InputNumber           |
+| boolean                | Switch                |
+| React.CSSProperties    | StyleEdit(样式编辑器) |
+| enum , `'a' \| 'b'`    | Select                |
+| jsdoc 指定@empPropType | @empPropType          |
 
 ## Example
 
@@ -76,6 +77,56 @@ PropsIcon.empPropTypes = {
       "type": "InputNumber"
     },
     "...": {...}
+  }
+}
+
+```
+
+#### 特殊指定 @empPropType
+
+```javascript
+/**
+ * 营收礼物图标
+ */
+export const PropsIcon = (props: PropsIconType) => {}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+PropsIcon.empPropTypes = {
+  "defined": {
+    "description": "营收礼物图标"
+  },
+  "name": "PropsIcon",
+  "props": {...}
+}
+```
+
+#### 生成`empPropTypes.props`
+
+```javascript
+// 通过类型获取`description`和`type`
+export type PropsIconType = {
+  /**
+   *  @empPropType Upload
+   *  @default https://www.baidu.com
+   *  @desc 图标地址
+   */
+  iconUrl: string;
+}
+      ↓ ↓ ↓ ↓ ↓ ↓
+PropsIcon.empPropTypes = {
+  "defined": {
+    "description": "营收礼物图标"
+  },
+  "name": "PropsIcon",
+  "props": {
+    "uploadUrl": {
+      "defaultValue": "https://www.baidu.com",
+      "description": "@empPropType Upload",
+      "label": "upload",
+      "required": true,
+      "type": "Input"
+    }
   }
 }
 

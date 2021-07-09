@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 import path from "path";
 import ts from "typescript";
 import { ComponentDoc, PropItem } from "react-docgen-typescript";
@@ -137,8 +138,14 @@ function createPropDefinition(
    * ```
    * @param description Prop description.
    */
-  const setDescription = (p: PropItem) =>
-    setStringLiteralField("description", p.description);
+  const setDescription = (p: PropItem) => {
+    return setStringLiteralField(
+      "description",
+      p.tags
+        ? Object(p.tags).desc || Object(p.tags).description || ""
+        : p.description
+    );
+  };
 
   /**
    * ```
@@ -221,9 +228,13 @@ function createPropDefinition(
       n.includes('"true" | "false"');
 
     const isStyle = (pitem: PropItem) =>
-      pitem.name.toLocaleLowerCase().includes("style") &&
-      !isBoolean(pitem.type.name);
+      (pitem.name.toLocaleLowerCase().includes("style") &&
+        !isBoolean(pitem.type.name)) ||
+      pitem.type.name.includes("CSSProperties");
 
+    // if (p.name === "iconUrl") console.log(p);
+
+    if (p.tags && Object(p.tags).empPropType) return Object(p.tags).empPropType;
     if (isSelectType(p)) return EmpPropTypes.Select;
     if (isNumber(typeName.toLowerCase())) return EmpPropTypes.InputNumber;
     if (isBoolean(typeName.toLowerCase())) return EmpPropTypes.Switch;

@@ -230,7 +230,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
                   generateDocgenCodeBlock({
                     filename: name,
                     source: name,
-                    // 生成文档对象，用于后续注入逐渐
+                    // 生成文档对象，用于后续注入组件
                     componentDocs: docGenParser.parseWithProgramProvider(
                       name,
                       () => tsProgram
@@ -282,7 +282,12 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
     }
 
     return {
-      docgenOptions,
+      docgenOptions: {
+        shouldExtractLiteralValuesFromEnum: true,
+        shouldIncludePropTagMap: true,
+        shouldRemoveUndefinedFromOptional: true,
+        ...docgenOptions,
+      },
       generateOptions: {
         setDisplayName: setDisplayName || true,
         typePropName: typePropName || "type",

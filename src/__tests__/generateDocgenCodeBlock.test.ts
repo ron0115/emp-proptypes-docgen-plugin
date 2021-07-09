@@ -22,9 +22,13 @@ function getGeneratorOptions(parserOptions: ParserOptions = {}) {
 }
 
 function loadFixtureTests(): GeneratorOptions[] {
-  return fs
-    .readdirSync(path.resolve(__dirname, "__fixtures__"))
-    .map(getGeneratorOptions());
+  return fs.readdirSync(path.resolve(__dirname, "__fixtures__")).map(
+    getGeneratorOptions({
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldIncludePropTagMap: true,
+      shouldRemoveUndefinedFromOptional: true,
+    })
+  );
 }
 
 const fixtureTests: GeneratorOptions[] = loadFixtureTests();
@@ -43,9 +47,11 @@ describe("component fixture", () => {
 it("generates value info for enums", () => {
   expect(
     generateDocgenCodeBlock(
-      getGeneratorOptions({ shouldExtractLiteralValuesFromEnum: true })(
-        "DefaultPropValue.tsx"
-      )
+      getGeneratorOptions({
+        shouldExtractLiteralValuesFromEnum: true,
+        shouldIncludePropTagMap: true,
+        shouldRemoveUndefinedFromOptional: true,
+      })("DefaultPropValue.tsx")
     )
   ).toMatchSnapshot();
 });

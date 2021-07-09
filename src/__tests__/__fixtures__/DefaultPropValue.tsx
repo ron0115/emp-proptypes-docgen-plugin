@@ -36,7 +36,12 @@
 //   disabled: false,
 // };
 import { genStyles } from "@/utils";
-import React, { HTMLAttributes, useEffect, useState } from "react";
+import React, {
+  CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import defaultStyles from "./index.module.scss";
 export type CircleProgressType = {
   r: number;
@@ -48,6 +53,16 @@ export type CircleProgressType = {
   centerSlot?: React.ReactNode;
   edgeStyle?: React.HTMLAttributes<HTMLDivElement>["style"];
   centerStyle?: React.HTMLAttributes<HTMLDivElement>["style"];
+  /**
+   *  @empPropType Upload
+   *  @default https://www.baidu.com
+   *  @desc 图标地址
+   */
+  iconUrl: string;
+  /**
+   *  @empPropType StyleEdit
+   */
+  style?: CSSProperties;
 };
 
 const styles = genStyles("ge-circle-progress", defaultStyles);
