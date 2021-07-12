@@ -1,3 +1,16 @@
+# v0.0.8 (Fri Jul 09 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- feat: 支持tags定义empPropType进行覆盖 ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.7 (Thu Jul 08 2021)
 
 #### ⚠️ Pushed to `master`
