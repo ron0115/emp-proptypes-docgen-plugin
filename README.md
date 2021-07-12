@@ -13,18 +13,45 @@ npm install --save-dev emp-proptypes-docgen-plugin
 yarn add -D emp-proptypes-docgen-plugin
 ```
 
-## Support Props
+## 使用
 
-| Props 类型             | 表单控件              |
-| ---------------------- | --------------------- |
-| string                 | Input                 |
-| number                 | InputNumber           |
-| boolean                | Switch                |
-| React.CSSProperties    | StyleEdit(样式编辑器) |
-| enum , `'a' \| 'b'`    | Select                |
-| jsdoc 指定@empPropType | @empPropType          |
+```ts
+const ts = require("typescript");
+const EmpPropTypesDocgenPlugin = require("emp-proptypes-docgen-plugin").default;
 
-## Example
+module.exports = {
+  plugins: [
+    // Will default to loading your root tsconfig.json
+    new EmpPropTypesDocgenPlugin(),
+    // or with a specific tsconfig
+    new EmpPropTypesDocgenPlugin({ tsconfigPath: "./tsconfig.dev.json" }),
+    // or with compiler options
+    new EmpPropTypesDocgenPlugin({
+      compilerOptions: { jsx: ts.JsxEmit.Preserve },
+    }),
+  ],
+};
+```
+
+## 支持直接推导的类型
+
+| Props 类型          | 表单控件              |
+| ------------------- | --------------------- |
+| string              | Input                 |
+| number              | InputNumber           |
+| boolean             | Switch                |
+| React.CSSProperties | StyleEdit(样式编辑器) |
+| enum , `'a' \| 'b'` | Select                |
+
+## 常用 JSDoc 规范
+
+| 常用注释类型         | 作用                                                 |
+| -------------------- | ---------------------------------------------------- |
+| @default             | 指定默认值，支持 require 语句，最终会编译成 url 插入 |
+| @desc / @description | 指定参数描述                                         |
+| @empPropType         | 从类型无法直接推导出表单类                           |
+
+## 例子
 
 #### 生成`empPropTypes.defined.description`
 
@@ -82,26 +109,7 @@ PropsIcon.empPropTypes = {
 
 ```
 
-#### 特殊指定 @empPropType
-
-```javascript
-/**
- * 营收礼物图标
- */
-export const PropsIcon = (props: PropsIconType) => {}
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-PropsIcon.empPropTypes = {
-  "defined": {
-    "description": "营收礼物图标"
-  },
-  "name": "PropsIcon",
-  "props": {...}
-}
-```
-
-#### 生成`empPropTypes.props`
+#### 特殊指定 `@empPropType`
 
 ```javascript
 // 通过类型获取`description`和`type`
@@ -120,37 +128,16 @@ PropsIcon.empPropTypes = {
   },
   "name": "PropsIcon",
   "props": {
-    "uploadUrl": {
+    "iconUrl": {
       "defaultValue": "https://www.baidu.com",
-      "description": "@empPropType Upload",
-      "label": "upload",
+      "description": "图标地址",
+      "label": "iconUrl",
       "required": true,
-      "type": "Input"
+      "type": "Upload"
     }
   }
 }
 
-```
-
-## Usage
-
-```ts
-const ts = require("typescript");
-const ReactDocgenTypescriptPlugin = require("emp-proptypes-docgen-plugin")
-  .default;
-
-module.exports = {
-  plugins: [
-    // Will default to loading your root tsconfig.json
-    new ReactDocgenTypescriptPlugin(),
-    // or with a specific tsconfig
-    new ReactDocgenTypescriptPlugin({ tsconfigPath: "./tsconfig.dev.json" }),
-    // or with compiler options
-    new ReactDocgenTypescriptPlugin({
-      compilerOptions: { jsx: ts.JsxEmit.Preserve },
-    }),
-  ],
-};
 ```
 
 ## About

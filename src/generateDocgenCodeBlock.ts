@@ -109,8 +109,17 @@ function createPropDefinition(
    */
   const setDefaultValue = (
     defaultValue: { value: string | number | boolean } | null
-  ) =>
-    ts.createPropertyAssignment(
+  ) => {
+    const getDefaultValue = (v: string | number | boolean) => {
+      // 支持require语句作为默认值
+      if (typeof v === "string" && v.includes("require(")) {
+        return ts.createIdentifier(v);
+      }
+
+      return ts.createLiteral(v);
+    };
+
+    return ts.createPropertyAssignment(
       ts.createLiteral("defaultValue"),
       // Use a more extensive check on defaultValue. Sometimes the parser
       // returns an empty object.
@@ -121,9 +130,10 @@ function createPropDefinition(
         (typeof defaultValue.value === "string" ||
           typeof defaultValue.value === "number" ||
           typeof defaultValue.value === "boolean")
-        ? ts.createLiteral(defaultValue.value)
+        ? getDefaultValue(defaultValue.value)
         : ts.createNull()
     );
+  };
 
   /** Set a property with a string value */
   const setStringLiteralField = (fieldName: string, fieldValue: string) =>
@@ -233,7 +243,6 @@ function createPropDefinition(
       pitem.type.name.includes("CSSProperties");
 
     // if (p.name === "iconUrl") console.log(p);
-
     if (p.tags && Object(p.tags).empPropType) return Object(p.tags).empPropType;
     if (isSelectType(p)) return EmpPropTypes.Select;
     if (isNumber(typeName.toLowerCase())) return EmpPropTypes.InputNumber;

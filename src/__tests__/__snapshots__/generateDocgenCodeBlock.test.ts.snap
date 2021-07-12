@@ -46,6 +46,9 @@ import React, {
   useState,
 } from \\"react\\";
 import defaultStyles from \\"./index.module.scss\\";
+// type Item = {
+//   avatar: string;
+// };
 export type CircleProgressType = {
   r: number;
   percent?: number;
@@ -58,7 +61,7 @@ export type CircleProgressType = {
   centerStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
   /**
    *  @empPropType Upload
-   *  @default https://www.baidu.com
+   *  @default require('./img/b.png')
    *  @desc 图标地址
    */
   iconUrl: string;
@@ -66,6 +69,7 @@ export type CircleProgressType = {
    *  @empPropType StyleEdit
    */
   style?: CSSProperties;
+  // item: Item;
 };
 
 const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
@@ -192,14 +196,14 @@ try {
     // @ts-ignore
     CircleProgress.displayName = \\"CircleProgress\\";
     // @ts-ignore
-    CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"https://www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
 }
 catch (__react_docgen_typescript_loader_error) { }
 try {
     // @ts-ignore
     DefaultPropValue.displayName = \\"DefaultPropValue\\";
     // @ts-ignore
-    DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"https://www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -404,6 +408,9 @@ import React, {
   useState,
 } from \\"react\\";
 import defaultStyles from \\"./index.module.scss\\";
+// type Item = {
+//   avatar: string;
+// };
 export type CircleProgressType = {
   r: number;
   percent?: number;
@@ -416,7 +423,7 @@ export type CircleProgressType = {
   centerStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
   /**
    *  @empPropType Upload
-   *  @default https://www.baidu.com
+   *  @default require('./img/b.png')
    *  @desc 图标地址
    */
   iconUrl: string;
@@ -424,6 +431,7 @@ export type CircleProgressType = {
    *  @empPropType StyleEdit
    */
   style?: CSSProperties;
+  // item: Item;
 };
 
 const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
@@ -550,14 +558,14 @@ try {
     // @ts-ignore
     CircleProgress.displayName = \\"CircleProgress\\";
     // @ts-ignore
-    CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"https://www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
 }
 catch (__react_docgen_typescript_loader_error) { }
 try {
     // @ts-ignore
     DefaultPropValue.displayName = \\"DefaultPropValue\\";
     // @ts-ignore
-    DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"https://www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;

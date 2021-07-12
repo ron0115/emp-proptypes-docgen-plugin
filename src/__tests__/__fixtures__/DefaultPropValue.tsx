@@ -43,6 +43,9 @@ import React, {
   useState,
 } from "react";
 import defaultStyles from "./index.module.scss";
+// type Item = {
+//   avatar: string;
+// };
 export type CircleProgressType = {
   r: number;
   percent?: number;
@@ -55,7 +58,7 @@ export type CircleProgressType = {
   centerStyle?: React.HTMLAttributes<HTMLDivElement>["style"];
   /**
    *  @empPropType Upload
-   *  @default https://www.baidu.com
+   *  @default require('./img/b.png')
    *  @desc 图标地址
    */
   iconUrl: string;
@@ -63,6 +66,7 @@ export type CircleProgressType = {
    *  @empPropType StyleEdit
    */
   style?: CSSProperties;
+  // item: Item;
 };
 
 const styles = genStyles("ge-circle-progress", defaultStyles);

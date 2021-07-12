@@ -1,6 +1,6 @@
 import webpack, { Configuration } from "webpack";
 import { createFsFromVolume, IFs, Volume } from "memfs";
-import ReactDocgenTypeScriptPlugin from "..";
+import EmpPropTypesDocgenPlugin from "..";
 
 // eslint-disable-next-line
 const joinPath = require("memory-fs/lib/join");
@@ -63,7 +63,7 @@ const getConfig = (
 ): Configuration => ({
   mode: "none",
   entry: { main: "./src/__tests__/__fixtures__/Simple.tsx" },
-  plugins: [new ReactDocgenTypeScriptPlugin(options)],
+  plugins: [new EmpPropTypesDocgenPlugin(options)],
   module: {
     rules: [
       {
