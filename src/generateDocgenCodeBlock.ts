@@ -117,10 +117,10 @@ function createPropDefinition(
     defaultValue: { value: string | number | boolean } | null
   ) => {
     const getDefaultValue = (v: string | number | boolean) => {
-      // 支持require语句作为默认值
-      if (typeof v === "string" && v.includes("require(")) {
-        return ts.createIdentifier(v);
-      }
+      // TODO: 支持require语句作为默认值
+      // if (typeof v === "string" && v.includes("require(")) {
+      //   return ts.createIdentifier(v);
+      // }
 
       return ts.createLiteral(v);
     };
