@@ -248,7 +248,7 @@ function createPropDefinition(
         !isBoolean(pitem.type.name)) ||
       pitem.type.name.includes("CSSProperties");
 
-    if (p.name === "theme") console.log(p.type.value);
+    // if (p.name === "theme") console.log(p.type.value);
     if (p.tags && Object(p.tags).type) {
       const typestr = Object(p.tags).type
       return typestr.match(/\.(\w+)/g)[0].slice(1);

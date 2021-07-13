@@ -39,6 +39,7 @@ exports[`component fixture DefaultPropValue.tsx has code block generated 1`] = `
 //   disabled: false,
 // };
 enum EmpPropTypes {
+  /** 输入框 */
   Input = \\"Input\\",
   InputNumber = \\"InputNumber\\",
   Slider = \\"Slider\\",
@@ -86,6 +87,8 @@ export type CircleProgressType = {
    *  @type {EmpPropTypes.StyleEdit}
    */
   style?: CSSProperties;
+  
+  theme: EmpPropTypes
   // item: Item;
 };
 
@@ -217,7 +220,7 @@ try {
     CircleProgress.displayName = \\"CircleProgress\\";
     // @ts-ignore
     if (!CircleProgress.empPropTypes) {
-        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"false\\" }, { \\"value\\": \\"true\\" }] } }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"theme\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"theme\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"Input\\" }, { \\"value\\": \\"InputNumber\\" }, { \\"value\\": \\"Slider\\" }, { \\"value\\": \\"Radio\\" }, { \\"value\\": \\"RadioGroup\\" }, { \\"value\\": \\"Select\\" }, { \\"value\\": \\"Switch\\" }, { \\"value\\": \\"TimePicker\\" }, { \\"value\\": \\"DatePicker\\" }, { \\"value\\": \\"RangePicker\\" }, { \\"value\\": \\"ColorPicker\\" }, { \\"value\\": \\"Upload\\" }, { \\"value\\": \\"RichText\\" }, { \\"value\\": \\"StyleEdit\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -247,7 +250,7 @@ try {
     HyphenatedPropNameComponent.displayName = \\"HyphenatedPropNameComponent\\";
     // @ts-ignore
     if (!HyphenatedPropNameComponent.empPropTypes) {
-        HyphenatedPropNameComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a hyphenated prop name.\\" }, \\"name\\": \\"HyphenatedPropNameComponent\\", \\"props\\": { \\"button-color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"button-color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+        HyphenatedPropNameComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a hyphenated prop name.\\" }, \\"name\\": \\"HyphenatedPropNameComponent\\", \\"props\\": { \\"button-color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"button-color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\" }, { \\"value\\": \\"green\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -276,7 +279,7 @@ try {
     MultiPropsComponent.displayName = \\"MultiPropsComponent\\";
     // @ts-ignore
     if (!MultiPropsComponent.empPropTypes) {
-        MultiPropsComponent.empPropTypes = { \\"defined\\": { description: \\"This is a component with multiple props.\\" }, \\"name\\": \\"MultiPropsComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } }, \\"size\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"size\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"small\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"large\\\\\\"\\" }] } } } };
+        MultiPropsComponent.empPropTypes = { \\"defined\\": { description: \\"This is a component with multiple props.\\" }, \\"name\\": \\"MultiPropsComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\" }, { \\"value\\": \\"green\\" }] } }, \\"size\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"size\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"small\\" }, { \\"value\\": \\"large\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -304,7 +307,7 @@ try {
     MultilineDescriptionComponent.displayName = \\"MultilineDescriptionComponent\\";
     // @ts-ignore
     if (!MultilineDescriptionComponent.empPropTypes) {
-        MultilineDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a multiline description.\\\\n\\\\nSecond line.\\" }, \\"name\\": \\"MultilineDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+        MultilineDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a multiline description.\\\\n\\\\nSecond line.\\" }, \\"name\\": \\"MultilineDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\" }, { \\"value\\": \\"green\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -334,7 +337,7 @@ try {
     MultilinePropDescriptionComponent.displayName = \\"MultilinePropDescriptionComponent\\";
     // @ts-ignore
     if (!MultilinePropDescriptionComponent.empPropTypes) {
-        MultilinePropDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with multiline prop description.\\" }, \\"name\\": \\"MultilinePropDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+        MultilinePropDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with multiline prop description.\\" }, \\"name\\": \\"MultilinePropDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\" }, { \\"value\\": \\"green\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -360,7 +363,7 @@ try {
     SimpleComponent.displayName = \\"SimpleComponent\\";
     // @ts-ignore
     if (!SimpleComponent.empPropTypes) {
-        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A simple component.\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A simple component.\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\" }, { \\"value\\": \\"green\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
@@ -428,6 +431,7 @@ exports[`generates value info for enums 1`] = `
 //   disabled: false,
 // };
 enum EmpPropTypes {
+  /** 输入框 */
   Input = \\"Input\\",
   InputNumber = \\"InputNumber\\",
   Slider = \\"Slider\\",
@@ -475,6 +479,8 @@ export type CircleProgressType = {
    *  @type {EmpPropTypes.StyleEdit}
    */
   style?: CSSProperties;
+  
+  theme: EmpPropTypes
   // item: Item;
 };
 
@@ -606,7 +612,7 @@ try {
     CircleProgress.displayName = \\"CircleProgress\\";
     // @ts-ignore
     if (!CircleProgress.empPropTypes) {
-        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"theme\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"theme\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"Input\\" }, { \\"value\\": \\"InputNumber\\" }, { \\"value\\": \\"Slider\\" }, { \\"value\\": \\"Radio\\" }, { \\"value\\": \\"RadioGroup\\" }, { \\"value\\": \\"Select\\" }, { \\"value\\": \\"Switch\\" }, { \\"value\\": \\"TimePicker\\" }, { \\"value\\": \\"DatePicker\\" }, { \\"value\\": \\"RangePicker\\" }, { \\"value\\": \\"ColorPicker\\" }, { \\"value\\": \\"Upload\\" }, { \\"value\\": \\"RichText\\" }, { \\"value\\": \\"StyleEdit\\" }] } } } };
     }
 }
 catch (__react_docgen_typescript_loader_error) { }"
