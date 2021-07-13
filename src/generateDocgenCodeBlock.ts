@@ -304,6 +304,9 @@ function createPropDefinition(
   );
 }
 
+const getComponentDesc = (d: ComponentDoc) => Object(d.tags).desc || Object(d.tags).description || d.description
+const getComponentName = (d: ComponentDoc) => Object(d.tags).name || Object(d.tags).label || d.displayName
+
 /**
  * Sets the field `empPropTypes` for the component specified by the component
  * doc with the docgen information.
@@ -352,14 +355,14 @@ function setComponentDocGen(
                 ts.createObjectLiteral([
                   ts.createPropertyAssignment(
                     ts.createIdentifier("description"),
-                    ts.createLiteral(d.description)
+                    ts.createLiteral(getComponentDesc(d))
                   ),
                 ])
               ),
-              // SimpleComponent.empPropTypes.displayName
+              // SimpleComponent.empPropTypes.name
               ts.createPropertyAssignment(
                 ts.createLiteral("name"),
-                ts.createLiteral(displayName)
+                ts.createLiteral(getComponentName(d))
               ),
               // SimpleComponent.empPropTypes.props
               ts.createPropertyAssignment(

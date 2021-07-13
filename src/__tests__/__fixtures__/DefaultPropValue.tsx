@@ -84,7 +84,7 @@ export type CircleProgressType = {
    *  @type {EmpPropTypes.StyleEdit}
    */
   style?: CSSProperties;
-  
+
   theme: EmpPropTypes
   // item: Item;
 };
@@ -92,6 +92,7 @@ export type CircleProgressType = {
 const styles = genStyles("ge-circle-progress", defaultStyles);
 /** 
  * @desc 环形进度条 
+ * @label 环形进度条
  * @visibleName CircleProgress
  * */
 export const CircleProgress = ({
