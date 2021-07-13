@@ -52,9 +52,9 @@ function insertTsIgnoreBeforeStatement(statement: ts.Statement): ts.Statement {
   return statement;
 }
 
-  const getDisplayName = (d: ComponentDoc) =>  {
-    return Object(d.tags).displayName || Object(d.tags).name || d.displayName
-  }
+const getDisplayName = (d: ComponentDoc) =>  {
+  return d.displayName
+}
 
 
 /**
