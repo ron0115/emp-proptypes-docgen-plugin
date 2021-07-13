@@ -1,3 +1,17 @@
+# v0.0.11 (Tue Jul 13 2021)
+
+#### ⚠️ Pushed to `master`
+
+- chore: update test ([@ron0115](https://github.com/ron0115))
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- fix: ifstatement use createBlock ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.10 (Tue Jul 13 2021)
 
 #### ⚠️ Pushed to `master`
