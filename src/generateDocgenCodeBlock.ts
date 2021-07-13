@@ -52,6 +52,11 @@ function insertTsIgnoreBeforeStatement(statement: ts.Statement): ts.Statement {
   return statement;
 }
 
+  const getDisplayName = (d: ComponentDoc) =>  {
+    return Object(d.tags).displayName || Object(d.tags).name || d.displayName
+  }
+
+
 /**
  * Set component display name.
  *
@@ -60,15 +65,16 @@ function insertTsIgnoreBeforeStatement(statement: ts.Statement): ts.Statement {
  * ```
  */
 function setDisplayName(d: ComponentDoc): ts.Statement {
+  const displayName = getDisplayName(d)
   return insertTsIgnoreBeforeStatement(
     ts.factory.createExpressionStatement(
       ts.factory.createBinaryExpression(
         ts.factory.createPropertyAccessExpression(
-          ts.factory.createIdentifier(d.displayName),
+          ts.factory.createIdentifier(displayName),
           ts.factory.createIdentifier("displayName")
         ),
         ts.SyntaxKind.EqualsToken,
-        ts.factory.createStringLiteral(d.displayName)
+        ts.factory.createStringLiteral(displayName)
       )
     )
   );
@@ -313,6 +319,7 @@ function setComponentDocGen(
   d: ComponentDoc,
   options: GeneratorOptions
 ): ts.Statement {
+  const displayName = getDisplayName(d)
   return insertTsIgnoreBeforeStatement(
     ts.factory.createIfStatement(
       // 不做配置合并，注释和指定写法二选一，通过判断
@@ -320,16 +327,17 @@ function setComponentDocGen(
       ts.factory.createPrefixUnaryExpression(
         ts.SyntaxKind.ExclamationToken,
         ts.factory.createPropertyAccessExpression(
-          ts.createIdentifier(d.displayName),
+          ts.createIdentifier(displayName),
           ts.createIdentifier("empPropTypes")
         )
       ),
-      ts.factory.createModuleBlock([
+      // ts.factory.createReturnStatement()
+      ts.factory.createBlock([
         ts.createStatement(
           ts.createBinary(
             // SimpleComponent.empPropTypes
             ts.createPropertyAccess(
-              ts.createIdentifier(d.displayName),
+              ts.createIdentifier(displayName),
               ts.createIdentifier("empPropTypes")
             ),
             ts.SyntaxKind.EqualsToken,
@@ -347,7 +355,7 @@ function setComponentDocGen(
               // SimpleComponent.empPropTypes.displayName
               ts.createPropertyAssignment(
                 ts.createLiteral("name"),
-                ts.createLiteral(d.displayName)
+                ts.createLiteral(displayName)
               ),
               // SimpleComponent.empPropTypes.props
               ts.createPropertyAssignment(

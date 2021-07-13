@@ -70,7 +70,10 @@ export type CircleProgressType = {
 };
 
 const styles = genStyles("ge-circle-progress", defaultStyles);
-/** 环形进度条 */
+/** 
+ * @desc 环形进度条 
+ * @name Circle
+ * */
 export const CircleProgress = ({
   r,
   percent = 0,
