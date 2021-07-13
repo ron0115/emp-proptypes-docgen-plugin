@@ -73,7 +73,10 @@ export type CircleProgressType = {
 };
 
 const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
-/** 环形进度条 */
+/** 
+ * @desc 环形进度条 
+ * @name Circle
+ * */
 export const CircleProgress = ({
   r,
   percent = 0,
@@ -194,22 +197,20 @@ export default CircleProgress;
 
 try {
     // @ts-ignore
-    CircleProgress.displayName = \\"CircleProgress\\";
+    Circle.displayName = \\"Circle\\";
     // @ts-ignore
-    if (!CircleProgress.empPropTypes)
-        {
-            CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
-        }
+    if (!Circle.empPropTypes) {
+        Circle.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"Circle\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }
 try {
     // @ts-ignore
-    DefaultPropValue.displayName = \\"DefaultPropValue\\";
+    Circle.displayName = \\"Circle\\";
     // @ts-ignore
-    if (!DefaultPropValue.empPropTypes)
-        {
-            DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
-        }
+    if (!Circle.empPropTypes) {
+        Circle.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"Circle\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -237,10 +238,9 @@ try {
     // @ts-ignore
     HyphenatedPropNameComponent.displayName = \\"HyphenatedPropNameComponent\\";
     // @ts-ignore
-    if (!HyphenatedPropNameComponent.empPropTypes)
-        {
-            HyphenatedPropNameComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a hyphenated prop name.\\" }, \\"name\\": \\"HyphenatedPropNameComponent\\", \\"props\\": { \\"button-color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"button-color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
-        }
+    if (!HyphenatedPropNameComponent.empPropTypes) {
+        HyphenatedPropNameComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a hyphenated prop name.\\" }, \\"name\\": \\"HyphenatedPropNameComponent\\", \\"props\\": { \\"button-color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"button-color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -267,10 +267,9 @@ try {
     // @ts-ignore
     MultiPropsComponent.displayName = \\"MultiPropsComponent\\";
     // @ts-ignore
-    if (!MultiPropsComponent.empPropTypes)
-        {
-            MultiPropsComponent.empPropTypes = { \\"defined\\": { description: \\"This is a component with multiple props.\\" }, \\"name\\": \\"MultiPropsComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } }, \\"size\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"size\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"small\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"large\\\\\\"\\" }] } } } };
-        }
+    if (!MultiPropsComponent.empPropTypes) {
+        MultiPropsComponent.empPropTypes = { \\"defined\\": { description: \\"This is a component with multiple props.\\" }, \\"name\\": \\"MultiPropsComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } }, \\"size\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"size\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"small\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"large\\\\\\"\\" }] } } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -296,10 +295,9 @@ try {
     // @ts-ignore
     MultilineDescriptionComponent.displayName = \\"MultilineDescriptionComponent\\";
     // @ts-ignore
-    if (!MultilineDescriptionComponent.empPropTypes)
-        {
-            MultilineDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a multiline description.\\\\n\\\\nSecond line.\\" }, \\"name\\": \\"MultilineDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
-        }
+    if (!MultilineDescriptionComponent.empPropTypes) {
+        MultilineDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a multiline description.\\\\n\\\\nSecond line.\\" }, \\"name\\": \\"MultilineDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -327,10 +325,9 @@ try {
     // @ts-ignore
     MultilinePropDescriptionComponent.displayName = \\"MultilinePropDescriptionComponent\\";
     // @ts-ignore
-    if (!MultilinePropDescriptionComponent.empPropTypes)
-        {
-            MultilinePropDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with multiline prop description.\\" }, \\"name\\": \\"MultilinePropDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
-        }
+    if (!MultilinePropDescriptionComponent.empPropTypes) {
+        MultilinePropDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with multiline prop description.\\" }, \\"name\\": \\"MultilinePropDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -354,10 +351,9 @@ try {
     // @ts-ignore
     SimpleComponent.displayName = \\"SimpleComponent\\";
     // @ts-ignore
-    if (!SimpleComponent.empPropTypes)
-        {
-            SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A simple component.\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
-        }
+    if (!SimpleComponent.empPropTypes) {
+        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A simple component.\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"\\\\\\"blue\\\\\\"\\" }, { \\"value\\": \\"\\\\\\"green\\\\\\"\\" }] } } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -378,10 +374,9 @@ try {
     // @ts-ignore
     SimpleComponent.displayName = \\"SimpleComponent\\";
     // @ts-ignore
-    if (!SimpleComponent.empPropTypes)
-        {
-            SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A component with only text content wrapped in a div.\\\\n\\\\nRef: https://github.com/strothj/react-docgen-typescript-loader/issues/7\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": {} };
-        }
+    if (!SimpleComponent.empPropTypes) {
+        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A component with only text content wrapped in a div.\\\\n\\\\nRef: https://github.com/strothj/react-docgen-typescript-loader/issues/7\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": {} };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
@@ -459,7 +454,10 @@ export type CircleProgressType = {
 };
 
 const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
-/** 环形进度条 */
+/** 
+ * @desc 环形进度条 
+ * @name Circle
+ * */
 export const CircleProgress = ({
   r,
   percent = 0,
@@ -580,22 +578,20 @@ export default CircleProgress;
 
 try {
     // @ts-ignore
-    CircleProgress.displayName = \\"CircleProgress\\";
+    Circle.displayName = \\"Circle\\";
     // @ts-ignore
-    if (!CircleProgress.empPropTypes)
-        {
-            CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"CircleProgress\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
-        }
+    if (!Circle.empPropTypes) {
+        Circle.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"Circle\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }
 try {
     // @ts-ignore
-    DefaultPropValue.displayName = \\"DefaultPropValue\\";
+    Circle.displayName = \\"Circle\\";
     // @ts-ignore
-    if (!DefaultPropValue.empPropTypes)
-        {
-            DefaultPropValue.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"DefaultPropValue\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
-        }
+    if (!Circle.empPropTypes) {
+        Circle.empPropTypes = { \\"defined\\": { description: \\"\\" }, \\"name\\": \\"Circle\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": true, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": require('./img/b.png'), \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" } } };
+    }
 }
 catch (__react_docgen_typescript_loader_error) { }"
 `;
