@@ -35,6 +35,23 @@
 //   counter: 123,
 //   disabled: false,
 // };
+enum EmpPropTypes {
+  Input = "Input",
+  InputNumber = "InputNumber",
+  Slider = "Slider",
+  Radio = "Radio",
+  RadioGroup = "RadioGroup",
+  Select = "Select",
+  Switch = "Switch",
+  TimePicker = "TimePicker",
+  DatePicker = "DatePicker",
+  RangePicker = "RangePicker",
+  ColorPicker = "ColorPicker",
+  Upload = "Upload",
+  RichText = "RichText",
+  StyleEdit = "StyleEdit",
+}
+
 import { genStyles } from "@/utils";
 import React, {
   CSSProperties,
@@ -57,13 +74,13 @@ export type CircleProgressType = {
   edgeStyle?: React.HTMLAttributes<HTMLDivElement>["style"];
   centerStyle?: React.HTMLAttributes<HTMLDivElement>["style"];
   /**
-   *  @empPropType Upload
-   *  @default require('./img/b.png')
+   *  @type { EmpPropTypes.Upload }
+   *  @default www.baidu.com
    *  @desc 图标地址
    */
   iconUrl: string;
   /**
-   *  @empPropType StyleEdit
+   *  @type {EmpPropTypes.StyleEdit}
    */
   style?: CSSProperties;
   // item: Item;

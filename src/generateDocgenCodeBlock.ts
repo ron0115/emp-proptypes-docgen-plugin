@@ -249,7 +249,11 @@ function createPropDefinition(
       pitem.type.name.includes("CSSProperties");
 
     // if (p.name === "iconUrl") console.log(p);
-    if (p.tags && Object(p.tags).empPropType) return Object(p.tags).empPropType;
+    if (p.tags && Object(p.tags).type) {
+      const typestr = Object(p.tags).type
+      return typestr.match(/\.(\w+)/g)[0].slice(1);
+    }
+
     if (isSelectType(p)) return EmpPropTypes.Select;
     if (isNumber(typeName.toLowerCase())) return EmpPropTypes.InputNumber;
     if (isBoolean(typeName.toLowerCase())) return EmpPropTypes.Switch;
