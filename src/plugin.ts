@@ -286,6 +286,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         shouldExtractLiteralValuesFromEnum: true,
         shouldIncludePropTagMap: true,
         shouldRemoveUndefinedFromOptional: true,
+        // ShouldExtractValuesFromUnion: true,
         ...docgenOptions,
       },
       generateOptions: {

@@ -27,6 +27,7 @@ function loadFixtureTests(): GeneratorOptions[] {
       shouldExtractLiteralValuesFromEnum: true,
       shouldIncludePropTagMap: true,
       shouldRemoveUndefinedFromOptional: true,
+      shouldExtractValuesFromUnion: true
     })
   );
 }
@@ -50,7 +51,7 @@ it("generates value info for enums", () => {
       getGeneratorOptions({
         shouldExtractLiteralValuesFromEnum: true,
         shouldIncludePropTagMap: true,
-        shouldRemoveUndefinedFromOptional: true,
+        shouldRemoveUndefinedFromOptional: true
       })("DefaultPropValue.tsx")
     )
   ).toMatchSnapshot();

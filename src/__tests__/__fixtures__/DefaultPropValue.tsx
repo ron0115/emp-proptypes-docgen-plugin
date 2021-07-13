@@ -36,6 +36,7 @@
 //   disabled: false,
 // };
 enum EmpPropTypes {
+  /** 输入框 */
   Input = "Input",
   InputNumber = "InputNumber",
   Slider = "Slider",
@@ -83,6 +84,8 @@ export type CircleProgressType = {
    *  @type {EmpPropTypes.StyleEdit}
    */
   style?: CSSProperties;
+  
+  theme: EmpPropTypes
   // item: Item;
 };
 

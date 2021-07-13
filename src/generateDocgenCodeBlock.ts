@@ -169,7 +169,7 @@ function createPropDefinition(
    * ```
    * @param name Prop name.
    */
-  const setName = (name: string) => setStringLiteralField("label", name);
+  const setName = (p:PropItem) => setStringLiteralField("label", Object(p.tags).label || p.name);
 
   /**
    * ```
@@ -211,7 +211,7 @@ function createPropDefinition(
       ? ts.createArrayLiteral(
           typeValue.map((value) =>
             ts.createObjectLiteral([
-              setStringLiteralField("value", value.value),
+              setStringLiteralField("value", value.value.replace(/"|'/g, '')),
             ])
           )
         )
@@ -248,7 +248,7 @@ function createPropDefinition(
         !isBoolean(pitem.type.name)) ||
       pitem.type.name.includes("CSSProperties");
 
-    // if (p.name === "iconUrl") console.log(p);
+    if (p.name === "theme") console.log(p.type.value);
     if (p.tags && Object(p.tags).type) {
       const typestr = Object(p.tags).type
       return typestr.match(/\.(\w+)/g)[0].slice(1);
@@ -289,7 +289,7 @@ function createPropDefinition(
   const keyList = [
     setDefaultValue(prop.defaultValue),
     setDescription(prop),
-    setName(prop.name),
+    setName(prop),
     setRequired(prop.required),
     setType(prop),
   ];
