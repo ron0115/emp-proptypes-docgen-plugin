@@ -61,14 +61,14 @@ function insertTsIgnoreBeforeStatement(statement: ts.Statement): ts.Statement {
  */
 function setDisplayName(d: ComponentDoc): ts.Statement {
   return insertTsIgnoreBeforeStatement(
-    ts.createExpressionStatement(
-      ts.createBinary(
-        ts.createPropertyAccess(
-          ts.createIdentifier(d.displayName),
-          ts.createIdentifier("displayName")
+    ts.factory.createExpressionStatement(
+      ts.factory.createBinaryExpression(
+        ts.factory.createPropertyAccessExpression(
+          ts.factory.createIdentifier(d.displayName),
+          ts.factory.createIdentifier("displayName")
         ),
         ts.SyntaxKind.EqualsToken,
-        ts.createLiteral(d.displayName)
+        ts.factory.createStringLiteral(d.displayName)
       )
     )
   );
@@ -137,9 +137,9 @@ function createPropDefinition(
 
   /** Set a property with a string value */
   const setStringLiteralField = (fieldName: string, fieldValue: string) =>
-    ts.createPropertyAssignment(
-      ts.createLiteral(fieldName),
-      ts.createLiteral(fieldValue)
+    ts.factory.createPropertyAssignment(
+      ts.factory.createStringLiteral(fieldName),
+      ts.factory.createStringLiteral(fieldValue)
     );
 
   /**
@@ -314,41 +314,54 @@ function setComponentDocGen(
   options: GeneratorOptions
 ): ts.Statement {
   return insertTsIgnoreBeforeStatement(
-    ts.createStatement(
-      ts.createBinary(
-        // SimpleComponent.empPropTypes
-        ts.createPropertyAccess(
+    ts.factory.createIfStatement(
+      // 不做配置合并，注释和指定写法二选一，通过判断
+      // if (!Component.empPropTypes) {}, 如果源码指定过，则不生效
+      ts.factory.createPrefixUnaryExpression(
+        ts.SyntaxKind.ExclamationToken,
+        ts.factory.createPropertyAccessExpression(
           ts.createIdentifier(d.displayName),
           ts.createIdentifier("empPropTypes")
-        ),
-        ts.SyntaxKind.EqualsToken,
-        ts.createObjectLiteral([
-          // SimpleComponent.empPropTypes.defined.description
-          ts.createPropertyAssignment(
-            ts.createLiteral("defined"),
+        )
+      ),
+      ts.factory.createModuleBlock([
+        ts.createStatement(
+          ts.createBinary(
+            // SimpleComponent.empPropTypes
+            ts.createPropertyAccess(
+              ts.createIdentifier(d.displayName),
+              ts.createIdentifier("empPropTypes")
+            ),
+            ts.SyntaxKind.EqualsToken,
             ts.createObjectLiteral([
+              // SimpleComponent.empPropTypes.defined.description
               ts.createPropertyAssignment(
-                ts.createIdentifier("description"),
-                ts.createLiteral(d.description)
+                ts.createLiteral("defined"),
+                ts.createObjectLiteral([
+                  ts.createPropertyAssignment(
+                    ts.createIdentifier("description"),
+                    ts.createLiteral(d.description)
+                  ),
+                ])
+              ),
+              // SimpleComponent.empPropTypes.displayName
+              ts.createPropertyAssignment(
+                ts.createLiteral("name"),
+                ts.createLiteral(d.displayName)
+              ),
+              // SimpleComponent.empPropTypes.props
+              ts.createPropertyAssignment(
+                ts.createLiteral("props"),
+                ts.createObjectLiteral(
+                  Object.entries(d.props).map(([propName, prop]) =>
+                    createPropDefinition(propName, prop, options)
+                  )
+                )
               ),
             ])
-          ),
-          // SimpleComponent.empPropTypes.displayName
-          ts.createPropertyAssignment(
-            ts.createLiteral("name"),
-            ts.createLiteral(d.displayName)
-          ),
-          // SimpleComponent.empPropTypes.props
-          ts.createPropertyAssignment(
-            ts.createLiteral("props"),
-            ts.createObjectLiteral(
-              Object.entries(d.props).map(([propName, prop]) =>
-                createPropDefinition(propName, prop, options)
-              )
-            )
-          ),
-        ])
-      )
+          )
+        ),
+      ])
     )
   );
 }
