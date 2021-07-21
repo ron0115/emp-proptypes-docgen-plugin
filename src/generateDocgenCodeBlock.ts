@@ -251,7 +251,7 @@ function createPropDefinition(
     // if (p.name === "theme") console.log(p.type.value);
     if (p.tags && Object(p.tags).type) {
       const typestr = Object(p.tags).type
-      return typestr.match(/\.(\w+)/g)[0].slice(1);
+      return typestr.includes('.') ? typestr.match(/\.(\w+)/g)[0].slice(1) : typestr;
     }
 
     if (isSelectType(p)) return EmpPropTypes.Select;
@@ -406,7 +406,7 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
 
   const codeBlocks = options.componentDocs
   // 过滤export default
-  // .filter(d => d.displayName !== '__function')
+  .filter(d => d.displayName !== '__function')
   .map((d) =>
     wrapInTryStatement(
       [
