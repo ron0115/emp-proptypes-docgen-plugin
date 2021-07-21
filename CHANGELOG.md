@@ -1,3 +1,15 @@
+# v0.0.18 (Wed Jul 21 2021)
+
+#### ⚠️ Pushed to `master`
+
+- feat: 解析器优先获取componentName，生成器忽略export default ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.17 (Tue Jul 13 2021)
 
 #### ⚠️ Pushed to `master`
