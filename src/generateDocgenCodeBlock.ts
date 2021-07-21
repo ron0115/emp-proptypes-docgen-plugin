@@ -406,7 +406,7 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
 
   const codeBlocks = options.componentDocs
   // 过滤export default
-  .filter(d => d.displayName !== '__function')
+  // .filter(d => d.displayName !== '__function')
   .map((d) =>
     wrapInTryStatement(
       [

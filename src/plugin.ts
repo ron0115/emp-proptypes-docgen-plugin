@@ -287,11 +287,11 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         shouldIncludePropTagMap: true,
         shouldRemoveUndefinedFromOptional: true,
         // ShouldExtractValuesFromUnion: true,
-        // 优化componentName的解析
-        componentNameResolver: (exp, source) => {
-          const componentName = exp.getName()
-          return typeof componentName  === 'string' ? componentName : undefined
-        },
+        // TODO: 优化componentName的解析
+        // componentNameResolver: (exp, source) => {
+        //   const componentName = exp.getName()
+        //   return typeof componentName  === 'string' ? componentName : undefined
+        // },
         ...docgenOptions,
       },
       generateOptions: {
