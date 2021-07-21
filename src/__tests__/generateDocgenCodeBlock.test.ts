@@ -13,7 +13,13 @@ function getGeneratorOptions(parserOptions: ParserOptions = {}) {
     return {
       filename,
       source: fs.readFileSync(filePath, "utf8"),
-      componentDocs: parse(filePath, parserOptions),
+      componentDocs: parse(filePath, {
+        ...parserOptions,
+        componentNameResolver: (exp, source) => {
+          const componentName = exp.getName()
+          return typeof componentName  === 'string' ? componentName : undefined
+        },
+      }),
       docgenCollectionName: null,
       setDisplayName: true,
       typePropName: "type",
@@ -51,7 +57,11 @@ it("generates value info for enums", () => {
       getGeneratorOptions({
         shouldExtractLiteralValuesFromEnum: true,
         shouldIncludePropTagMap: true,
-        shouldRemoveUndefinedFromOptional: true
+        shouldRemoveUndefinedFromOptional: true,
+        componentNameResolver: (exp, source) => {
+          const componentName = exp.getName()
+          return typeof componentName  === 'string' ? componentName : undefined
+        },
       })("DefaultPropValue.tsx")
     )
   ).toMatchSnapshot();

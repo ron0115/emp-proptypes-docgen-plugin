@@ -8,6 +8,7 @@ import findCacheDir from "find-cache-dir";
 import flatCache from "flat-cache";
 import crypto from "crypto";
 
+// Import fs from "fs";
 import { LoaderOptions } from "./types";
 import {
   generateDocgenCodeBlock,
@@ -182,7 +183,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         compilation.hooks.seal.tap(pluginName, () => {
           const modulesToProcess: [string, webpack.Module][] = [];
 
-          // 1. Aggregate modules to process
+          // 1. 过滤module source，执行moduleToProcess
           compilation.modules.forEach((module: webpack.Module) => {
             if (!module.nameForCondition) {
               return;
@@ -207,14 +208,13 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
             modulesToProcess.push([nameForCondition, module]);
           });
 
-          // 2. Create a ts program with the modules
+          // 2. 将source module集合创建ts program（编译程序实例）
           const tsProgram = ts.createProgram(
             modulesToProcess.map(([name]) => name),
             compilerOptions
           );
 
-          // 3. Process and parse each module and add the type information
-          // as a dependency
+          // 3. 解析module，生成所需对象绑定到组件对象上，将代码插入到源码末尾
           modulesToProcess.forEach(([name, module]) => {
             if (isWebpack5) {
               // Since this file is needed only for webpack 5, load it only then
@@ -222,15 +222,15 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
               //
               // eslint-disable-next-line
               const { DocGenDependency } = require("./dependency");
-
               module.addDependency(
                 // eslint-disable-next-line
                 // @ts-ignore: Webpack 4 type
                 new DocGenDependency(
+                  // 从docGen插件生成的json对象，构建所需的ts-ast, 并转换成TS代码，追加到source末尾。
                   generateDocgenCodeBlock({
                     filename: name,
                     source: name,
-                    // 生成文档对象，用于后续注入组件
+                    // 从源文件，生成组件jsdoc的json对象
                     componentDocs: docGenParser.parseWithProgramProvider(
                       name,
                       () => tsProgram
@@ -287,6 +287,11 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         shouldIncludePropTagMap: true,
         shouldRemoveUndefinedFromOptional: true,
         // ShouldExtractValuesFromUnion: true,
+        // 优化componentName的解析
+        componentNameResolver: (exp, source) => {
+          const componentName = exp.getName()
+          return typeof componentName  === 'string' ? componentName : undefined
+        },
         ...docgenOptions,
       },
       generateOptions: {

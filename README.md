@@ -109,13 +109,13 @@ PropsIcon.empPropTypes = {
 
 ```
 
-#### 特殊指定 `@empPropType`
+#### 特殊指定 `@type`
 
 ```javascript
 // 通过类型获取`description`和`type`
 export type PropsIconType = {
   /**
-   *  @empPropType Upload
+   *  @type {EmpPropTypes.Upload}
    *  @default https://www.baidu.com
    *  @desc 图标地址
    */

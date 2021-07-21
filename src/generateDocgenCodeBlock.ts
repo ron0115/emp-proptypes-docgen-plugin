@@ -404,7 +404,10 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
       undefined
     );
 
-  const codeBlocks = options.componentDocs.map((d) =>
+  const codeBlocks = options.componentDocs
+  // 过滤export default
+  .filter(d => d.displayName !== '__function')
+  .map((d) =>
     wrapInTryStatement(
       [
         options.setDisplayName ? setDisplayName(d) : null,

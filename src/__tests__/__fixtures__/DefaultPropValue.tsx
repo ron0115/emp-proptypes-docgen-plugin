@@ -45,6 +45,7 @@ enum EmpPropTypes {
   Select = "Select",
   Switch = "Switch",
   TimePicker = "TimePicker",
+  /** 日期选择 */
   DatePicker = "DatePicker",
   RangePicker = "RangePicker",
   ColorPicker = "ColorPicker",
@@ -93,7 +94,6 @@ const styles = genStyles("ge-circle-progress", defaultStyles);
 /** 
  * @desc 环形进度条 
  * @label 环形进度条
- * @visibleName CircleProgress
  * */
 export const CircleProgress = ({
   r,
