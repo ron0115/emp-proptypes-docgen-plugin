@@ -49,15 +49,19 @@ module.exports = {
 | -------------------- | ---------------------------------------------------- |
 | @default             | 指定默认值 |
 | @desc / @description | 指定参数描述                                         |
-| @empPropType         | 从类型无法直接推导出表单类                           |
+| @type         | 从类型无法直接推导出表单类                           |
 
 ## 例子
 
-#### 生成`empPropTypes.defined.description`
+### 生成组件名称和描述
+
+即`empPropTypes.defined.description`
 
 ```javascript
 /**
- * 营收礼物图标
+ * @label 礼物图标
+ * @desc 营收礼物图标
+ * @visibleName PropsIcon
  */
 export const PropsIcon = (props: PropsIconType) => {}
 
@@ -72,44 +76,11 @@ PropsIcon.empPropTypes = {
 }
 ```
 
-#### 生成`empPropTypes.props`
 
-```javascript
-// 通过类型获取`description`和`type`
-export type PropsIconType = {
-  /** 礼物id，用于获取礼物图标 */
-  propsId: number
-}
-// 通过defaultProps获取defaultValue
-PropsIcon.defaultProps = {
-  propsId: 12,
-}
-// 通过组件参数内联写法获取defaultValue
-export const PropsIcon = ({
-  propsId = 12
-}: PropsIconType) => {}
+### 生成组件参数
 
-      ↓ ↓ ↓ ↓ ↓ ↓
-PropsIcon.empPropTypes = {
-  "defined": {
-    "description": "营收礼物图标"
-  },
-  "name": "PropsIcon",
-  "props": {
-    "propsId": {
-      "defaultValue": 12,
-      "description": "礼物id，用于获取礼物图标",
-      "label": "propsId",
-      "required": false,
-      "type": "InputNumber"
-    },
-    "...": {...}
-  }
-}
+即`empPropTypes.props`
 
-```
-
-#### 特殊指定 `@type`
 
 ```javascript
 // 通过类型获取`description`和`type`
@@ -139,6 +110,10 @@ PropsIcon.empPropTypes = {
 }
 
 ```
+
+### 注意事项
+1. 需要指定`@visibleName`（推荐指定），表示挂载配置对象的变量名。
+2. 若不指定，默认取文件名或者所在文件夹名称（一般与组件名一致）。
 
 ## About
 
