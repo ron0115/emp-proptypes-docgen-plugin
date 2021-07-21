@@ -1,3 +1,16 @@
+# v0.0.19 (Wed Jul 21 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- chore: revert some fixes ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.18 (Wed Jul 21 2021)
 
 #### ⚠️ Pushed to `master`
