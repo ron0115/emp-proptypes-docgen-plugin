@@ -20,7 +20,9 @@ class DocGenDependency extends NullDependency {
   }
 
   updateHash: webpack.dependencies.NullDependency["updateHash"] = (hash) => {
-    hash.update(this.codeBlock);
+    if (this.codeBlock && typeof this.codeBlock === "string") {
+      hash.update(this.codeBlock);
+    }
   };
 }
 
