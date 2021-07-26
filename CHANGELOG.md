@@ -1,3 +1,17 @@
+# v0.0.20 (Wed Jul 21 2021)
+
+#### ⚠️ Pushed to `master`
+
+- fix: whole name support for @type ([@ron0115](https://github.com/ron0115))
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- chore: docs ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.19 (Wed Jul 21 2021)
 
 #### ⚠️ Pushed to `master`
