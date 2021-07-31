@@ -68,6 +68,14 @@ const cacheId = "ts-docgen";
 const cacheDir = findCacheDir({ name: cacheId });
 const cache = flatCache.load(cacheId, cacheDir);
 
+const resolvePathForGlob = (p: string) => {
+  return p.split(path.sep).join("/");
+};
+
+const getPatshForGlob = (paths: string[]) => {
+  return paths.map((item) => resolvePathForGlob(item));
+};
+
 /** Run the docgen parser and inject the result into the output */
 /** This is used for webpack 4 or earlier */
 function processModule(
@@ -139,7 +147,16 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
   private options: PluginOptions;
 
   constructor(options: PluginOptions = {}) {
-    this.options = options;
+    const opts = { ...options };
+    if (options.include) {
+      opts.include = getPatshForGlob(options.include);
+    }
+
+    if (options.exclude) {
+      opts.exclude = getPatshForGlob(options.exclude);
+    }
+
+    this.options = opts;
   }
 
   apply(compiler: webpack.Compiler): void {
