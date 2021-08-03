@@ -27,9 +27,9 @@ module.exports = {
     new EmpPropTypesDocgenPlugin({ tsconfigPath: "./tsconfig.dev.json" }),
     // or with compiler options
     new EmpPropTypesDocgenPlugin({
-      compilerOptions: { jsx: ts.JsxEmit.Preserve },
-    }),
-  ],
+      compilerOptions: { jsx: ts.JsxEmit.Preserve }
+    })
+  ]
 };
 ```
 
@@ -45,11 +45,11 @@ module.exports = {
 
 ## 常用 JSDoc 规范
 
-| 常用注释类型         | 作用                                                 |
-| -------------------- | ---------------------------------------------------- |
-| @default             | 指定默认值 |
-| @desc / @description | 指定参数描述                                         |
-| @type         | 默认从类型值直接推断，指定@type时优先                         |
+| 常用注释类型         | 作用                                   |
+| -------------------- | -------------------------------------- |
+| @default             | 指定默认值                             |
+| @desc / @description | 指定参数描述                           |
+| @type                | 默认从类型值直接推断，指定@type 时优先 |
 
 ## 例子
 
@@ -76,18 +76,16 @@ PropsIcon.empPropTypes = {
 }
 ```
 
-
 ### 生成组件参数
 
 即`empPropTypes.props`
 
-
-```javascript
+```typescript
 // 通过类型获取`description`和`type`
 export type PropsIconType = {
   /**
    *  @type {EmpPropTypes.Upload}
-   *  @default https://www.baidu.com
+   *  @default https://www.baidu.com/icon.png
    *  @desc 图标地址
    */
   iconUrl: string;
@@ -111,7 +109,47 @@ PropsIcon.empPropTypes = {
 
 ```
 
+#### 枚举类型
+
+生成 antd - Select 组件需要的`options`
+
+```typescript
+enum Nums = {
+  /** 1个 */
+  One = 1,
+  /** 两个 */
+  Two = 2
+}
+// 通过类型获取`description`和`type`
+export type PropsIconType = {
+  nums: Nums
+}
+      ↓ ↓ ↓ ↓ ↓ ↓
+PropsIcon.empPropTypes = {
+  "defined": {
+    "description": "营收礼物图标"
+  },
+  "name": "PropsIcon",
+  "props": {
+    "nums": {
+      "options": {
+        "options": [{
+          label: "1个",
+          value: 1
+        },{
+          label: "两个",
+          value: 2
+        }]
+      }
+      "type": "Select"
+    }
+  }
+}
+
+```
+
 ### 注意事项
+
 1. 需要指定`@visibleName`（推荐指定），表示挂载配置对象的变量名。
 2. 若不指定，默认取文件名或者所在文件夹名称（一般与组件名一致）。
 
