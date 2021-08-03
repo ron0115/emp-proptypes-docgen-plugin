@@ -51,7 +51,7 @@ enum EmpPropTypes {
   ColorPicker = "ColorPicker",
   Upload = "Upload",
   RichText = "RichText",
-  StyleEdit = "StyleEdit",
+  StyleEdit = "StyleEdit"
 }
 
 import { genStyles } from "@/utils";
@@ -59,7 +59,7 @@ import React, {
   CSSProperties,
   HTMLAttributes,
   useEffect,
-  useState,
+  useState
 } from "react";
 import defaultStyles from "./index.module.scss";
 // type Item = {
@@ -86,13 +86,13 @@ export type CircleProgressType = {
    */
   style?: CSSProperties;
 
-  theme: EmpPropTypes
+  theme: EmpPropTypes;
   // item: Item;
 };
 
 const styles = genStyles("ge-circle-progress", defaultStyles);
-/** 
- * @desc 环形进度条 
+/**
+ * @desc 环形进度条
  * @label 环形进度条
  * */
 export const CircleProgress = ({
@@ -100,7 +100,7 @@ export const CircleProgress = ({
   percent = 0,
   strokeWidth = 8,
   borderOffset = 4,
-  visible = true,
+  visible = false,
   edgeSlot,
   centerSlot,
   centerStyle,
@@ -108,12 +108,12 @@ export const CircleProgress = ({
   ...otherProps
 }: CircleProgressType) => {
   const [edgeStyle, setEdgeStyle] = useState({
-    transform: "",
+    transform: ""
   });
 
   const size = {
     width: 2 * r + 2 * strokeWidth + 2 * borderOffset,
-    height: 2 * r + 2 * strokeWidth + 2 * borderOffset,
+    height: 2 * r + 2 * strokeWidth + 2 * borderOffset
   };
 
   // 定位edge的位置
@@ -121,12 +121,12 @@ export const CircleProgress = ({
   const strokeDashoffset = perimeter * (1 - percent);
   const offsetR = r + strokeWidth + borderOffset;
   const circleStyle = {
-    strokeWidth: strokeWidth + "px",
+    strokeWidth: strokeWidth + "px"
   };
   const circleProps = {
     r: r,
     cx: offsetR,
-    cy: offsetR,
+    cy: offsetR
   };
   // centerXAxis
   const a = offsetR;
@@ -150,7 +150,7 @@ export const CircleProgress = ({
       transform += `translateY(-100%)`;
     }
     setEdgeStyle({
-      transform,
+      transform
     });
   }, [percent]);
 
@@ -162,7 +162,7 @@ export const CircleProgress = ({
       style={{
         width: size.width + "px",
         height: size.height + "px",
-        display: visible ? "block" : "none",
+        display: visible ? "block" : "none"
         // ...otherProps.style,
       }}
     >
@@ -203,7 +203,7 @@ export const CircleProgress = ({
           left: edgeX + "px",
           top: edgeY + "px",
           ...edgeStyle,
-          ...edgeStyleProps,
+          ...edgeStyleProps
         }}
       >
         {edgeSlot}

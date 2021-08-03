@@ -25,7 +25,7 @@ enum EmpPropTypes {
   ColorPicker = "ColorPicker",
   Upload = "Upload",
   RichText = "RichText",
-  StyleEdit = "StyleEdit",
+  StyleEdit = "StyleEdit"
 }
 
 /**
@@ -46,16 +46,15 @@ function insertTsIgnoreBeforeStatement(statement: ts.Statement): ts.Statement {
       text: " @ts-ignore", // Leading space is important here
       kind: ts.SyntaxKind.SingleLineCommentTrivia,
       pos: -1,
-      end: -1,
-    },
+      end: -1
+    }
   ]);
   return statement;
 }
 
-const getDisplayName = (d: ComponentDoc) =>  {
-  return d.displayName
-}
-
+const getDisplayName = (d: ComponentDoc) => {
+  return d.displayName;
+};
 
 /**
  * Set component display name.
@@ -65,7 +64,7 @@ const getDisplayName = (d: ComponentDoc) =>  {
  * ```
  */
 function setDisplayName(d: ComponentDoc): ts.Statement {
-  const displayName = getDisplayName(d)
+  const displayName = getDisplayName(d);
   return insertTsIgnoreBeforeStatement(
     ts.factory.createExpressionStatement(
       ts.factory.createBinaryExpression(
@@ -121,7 +120,6 @@ function createPropDefinition(
       // if (typeof v === "string" && v.includes("require(")) {
       //   return ts.createIdentifier(v);
       // }
-
       return ts.createLiteral(v);
     };
 
@@ -169,7 +167,8 @@ function createPropDefinition(
    * ```
    * @param name Prop name.
    */
-  const setName = (p:PropItem) => setStringLiteralField("label", Object(p.tags).label || p.name);
+  const setName = (p: PropItem) =>
+    setStringLiteralField("label", Object(p.tags).label || p.name);
 
   /**
    * ```
@@ -200,7 +199,7 @@ function createPropDefinition(
           .split("|")
           .map((item) =>
             ts.createObjectLiteral([
-              setStringLiteralField("value", item.trim()),
+              setStringLiteralField("value", item.trim())
             ])
           )
       );
@@ -209,11 +208,16 @@ function createPropDefinition(
     return Array.isArray(typeValue) &&
       typeValue.every((value) => typeof value.value === "string")
       ? ts.createArrayLiteral(
-          typeValue.map((value) =>
-            ts.createObjectLiteral([
-              setStringLiteralField("value", value.value.replace(/"|'/g, '')),
-            ])
-          )
+          typeValue.map((value) => {
+            const v = value.value.replace(/"|'/g, "");
+
+            const l = value.description?.replace(/"|'/g, "") || v;
+
+            return ts.createObjectLiteral([
+              setStringLiteralField("value", v),
+              setStringLiteralField("label", l)
+            ]);
+          })
         )
       : ts.createArrayLiteral([]);
   };
@@ -250,8 +254,10 @@ function createPropDefinition(
 
     // if (p.name === "theme") console.log(p.type.value);
     if (p.tags && Object(p.tags).type) {
-      const typestr = Object(p.tags).type
-      return typestr.includes('.') ? typestr.match(/\.(\w+)/g)[0].slice(1) : typestr;
+      const typestr = Object(p.tags).type;
+      return typestr.includes(".")
+        ? typestr.match(/\.(\w+)/g)[0].slice(1)
+        : typestr;
     }
 
     if (isSelectType(p)) return EmpPropTypes.Select;
@@ -278,20 +284,21 @@ function createPropDefinition(
     return ts.createPropertyAssignment(
       ts.createLiteral("options"),
       ts.createObjectLiteral([
-        ts.createPropertyAssignment(
-          ts.createIdentifier("options"),
-          setValue(p)
-        ),
+        ts.createPropertyAssignment(ts.createIdentifier("options"), setValue(p))
       ])
     );
   };
+
+  if (prop.name === "visible") {
+    console.log(prop.defaultValue);
+  }
 
   const keyList = [
     setDefaultValue(prop.defaultValue),
     setDescription(prop),
     setName(prop),
     setRequired(prop.required),
-    setType(prop),
+    setType(prop)
   ];
 
   if (isSelectType(prop)) {
@@ -304,8 +311,10 @@ function createPropDefinition(
   );
 }
 
-const getComponentDesc = (d: ComponentDoc) => Object(d.tags).desc || Object(d.tags).description || d.description
-const getComponentName = (d: ComponentDoc) => Object(d.tags).name || Object(d.tags).label || d.displayName
+const getComponentDesc = (d: ComponentDoc) =>
+  Object(d.tags).desc || Object(d.tags).description || d.description;
+const getComponentName = (d: ComponentDoc) =>
+  Object(d.tags).name || Object(d.tags).label || d.displayName;
 
 /**
  * Sets the field `empPropTypes` for the component specified by the component
@@ -326,7 +335,7 @@ function setComponentDocGen(
   d: ComponentDoc,
   options: GeneratorOptions
 ): ts.Statement {
-  const displayName = getDisplayName(d)
+  const displayName = getDisplayName(d);
   return insertTsIgnoreBeforeStatement(
     ts.factory.createIfStatement(
       // 不做配置合并，注释和指定写法二选一，通过判断
@@ -356,7 +365,7 @@ function setComponentDocGen(
                   ts.createPropertyAssignment(
                     ts.createIdentifier("description"),
                     ts.createLiteral(getComponentDesc(d))
-                  ),
+                  )
                 ])
               ),
               // SimpleComponent.empPropTypes.name
@@ -372,10 +381,10 @@ function setComponentDocGen(
                     createPropDefinition(propName, prop, options)
                   )
                 )
-              ),
+              )
             ])
           )
-        ),
+        )
       ])
     )
   );
@@ -405,16 +414,16 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
     );
 
   const codeBlocks = options.componentDocs
-  // 过滤export default
-  .filter(d => d.displayName !== '__function')
-  .map((d) =>
-    wrapInTryStatement(
-      [
-        options.setDisplayName ? setDisplayName(d) : null,
-        setComponentDocGen(d, options),
-      ].filter((s) => s !== null) as ts.Statement[]
-    )
-  );
+    // 过滤export default
+    .filter((d) => d.displayName !== "__function")
+    .map((d) =>
+      wrapInTryStatement(
+        [
+          options.setDisplayName ? setDisplayName(d) : null,
+          setComponentDocGen(d, options)
+        ].filter((s) => s !== null) as ts.Statement[]
+      )
+    );
 
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
   const printNode = (sourceNode: ts.Node) =>
