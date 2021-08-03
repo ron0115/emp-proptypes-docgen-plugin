@@ -1,3 +1,16 @@
+# v0.0.22 (Sat Jul 31 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- fix: math windows glob ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.21 (Mon Jul 26 2021)
 
 #### ⚠️ Pushed to `master`
