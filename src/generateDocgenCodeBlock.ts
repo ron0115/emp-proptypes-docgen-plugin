@@ -289,10 +289,6 @@ function createPropDefinition(
     );
   };
 
-  if (prop.name === "visible") {
-    console.log(prop.defaultValue);
-  }
-
   const keyList = [
     setDefaultValue(prop.defaultValue),
     setDescription(prop),
