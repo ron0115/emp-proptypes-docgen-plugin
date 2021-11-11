@@ -1,3 +1,6 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import path from "path";
 import createDebug from "debug";
 import ts from "typescript";
@@ -12,8 +15,9 @@ import crypto from "crypto";
 import { LoaderOptions } from "./types";
 import {
   generateDocgenCodeBlock,
-  GeneratorOptions,
+  GeneratorOptions
 } from "./generateDocgenCodeBlock";
+import { writeFileSync, existsSync } from "fs";
 
 const debugExclude = createDebug("docgen:exclude");
 const debugInclude = createDebug("docgen:include");
@@ -76,6 +80,31 @@ const getPatshForGlob = (paths: string[]) => {
   return paths.map((item) => resolvePathForGlob(item));
 };
 
+const generateJSON = () => {
+  const resolveApp = (relativePath: string) => {
+    return path.join(process.cwd(), relativePath);
+  };
+
+  if (!existsSync(resolveApp("./emp-config.js"))) return;
+
+  const pkg = require(resolveApp("./package.json"));
+
+  const version = process.env.NEXT_VERSION || pkg.version;
+  const { ProjectConfig } = require(resolveApp("empconfig/project-config.js"));
+  const scope = pkg.name.split("/")[0];
+  writeFileSync(
+    resolveApp("./dist/emp-docgen.json"),
+    JSON.stringify({
+      projectConfig: ProjectConfig,
+      version,
+      // 最好是拿nextversion的tag，不跟发布插件耦合
+      versionTag: version.match(/\d+.\d+.\d+-(\S+)\.\d+/)[1],
+      docgens: (global as any).docgens,
+      scope
+    })
+  );
+};
+
 /** Run the docgen parser and inject the result into the output */
 /** This is used for webpack 4 or earlier */
 function processModule(
@@ -125,7 +154,7 @@ function processModule(
     filename: userRequest,
     source: userRequest,
     componentDocs,
-    ...loaderOptions,
+    ...loaderOptions
   }).substring(userRequest.length);
 
   // eslint-disable-next-line
@@ -164,7 +193,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
     const {
       docgenOptions,
       compilerOptions,
-      generateOptions,
+      generateOptions
     } = this.getOptions();
     const docGenParser = docGen.withCompilerOptions(
       compilerOptions,
@@ -252,7 +281,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
                       name,
                       () => tsProgram
                     ),
-                    ...generateOptions,
+                    ...generateOptions
                   }).substring(name.length)
                 )
               );
@@ -260,6 +289,8 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
               // Assume webpack 4 or earlier
               processModule(docGenParser, module, tsProgram, generateOptions);
             }
+
+            generateJSON();
           });
         });
       }
@@ -285,13 +316,13 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
     let compilerOptions = {
       jsx: ts.JsxEmit.React,
       module: ts.ModuleKind.CommonJS,
-      target: ts.ScriptTarget.Latest,
+      target: ts.ScriptTarget.Latest
     };
 
     if (userCompilerOptions) {
       compilerOptions = {
         ...compilerOptions,
-        ...userCompilerOptions,
+        ...userCompilerOptions
       };
     } else {
       const { options: tsOptions } = getTSConfigFile(tsconfigPath);
@@ -309,13 +340,13 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         //   const componentName = exp.getName()
         //   return typeof componentName  === 'string' ? componentName : undefined
         // },
-        ...docgenOptions,
+        ...docgenOptions
       },
       generateOptions: {
         setDisplayName: setDisplayName || true,
-        typePropName: typePropName || "type",
+        typePropName: typePropName || "type"
       },
-      compilerOptions,
+      compilerOptions
     };
   }
 }
