@@ -1,6 +1,6 @@
 {
   "name": "emp-proptypes-docgen-plugin",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "A webpack plugin to inject react typescript docgen information in cweb.",
   "license": "MIT",
   "author": "liangzhirong <liangzr0115@gmail.com>",
