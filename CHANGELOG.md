@@ -1,3 +1,17 @@
+# v0.0.24 (Thu Nov 11 2021)
+
+#### ⚠️ Pushed to `master`
+
+- feat: 生成emp-docgen.json ([@ron0115](https://github.com/ron0115))
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- chore: docs ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.23 (Tue Aug 03 2021)
 
 #### ⚠️ Pushed to `master`
