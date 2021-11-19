@@ -1,3 +1,16 @@
+# v0.0.25 (Fri Nov 19 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- feat: 分离emp.docgen.json ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.24 (Thu Nov 11 2021)
 
 #### ⚠️ Pushed to `master`
