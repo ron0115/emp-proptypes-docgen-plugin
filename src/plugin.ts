@@ -301,18 +301,19 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
       }
     );
     const isDev = process.env.npm_lifecycle_script?.includes("emp dev");
-
-    const copyPlugin = new CopyPlugin({
-      patterns: [
-        {
-          from: "./**/*",
-          context: exports.resolveLocal(".cache/.docgen"),
-          to: isDev ? "./dist/.docgen" : "./.docgen"
-          // ignore: [".DS_Store", ".gitkeep"]
-        }
-      ]
-    });
-    copyPlugin.apply(compiler);
+    if (existsSync(resolveLocal(".cache/.docgen"))) {
+      const copyPlugin = new CopyPlugin({
+        patterns: [
+          {
+            from: "./**/*",
+            context: resolveLocal(".cache/.docgen"),
+            to: isDev ? "./dist/.docgen" : "./.docgen"
+            // ignore: [".DS_Store", ".gitkeep"]
+          }
+        ]
+      });
+      copyPlugin.apply(compiler);
+    }
   }
 
   getOptions(): {
