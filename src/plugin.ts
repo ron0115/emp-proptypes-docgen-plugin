@@ -12,12 +12,14 @@ import flatCache from "flat-cache";
 import crypto from "crypto";
 
 // Import fs from "fs";
+import { outputFileSync, existsSync } from "fs-extra";
 import { LoaderOptions } from "./types";
 import {
   generateDocgenCodeBlock,
   GeneratorOptions
 } from "./generateDocgenCodeBlock";
-import { writeFileSync, existsSync } from "fs";
+
+const CopyPlugin = require("copy-webpack-plugin");
 
 const debugExclude = createDebug("docgen:exclude");
 const debugInclude = createDebug("docgen:include");
@@ -80,11 +82,15 @@ const getPatshForGlob = (paths: string[]) => {
   return paths.map((item) => resolvePathForGlob(item));
 };
 
-const generateJSON = () => {
-  const resolveApp = (relativePath: string) => {
-    return path.join(process.cwd(), relativePath);
-  };
+export const resolveApp = (relativePath: string) => {
+  return path.join(process.cwd(), relativePath);
+};
 
+export const resolveLocal = (relativePath: string) => {
+  return path.join(__dirname, relativePath);
+};
+
+const generateJSON = () => {
   if (!existsSync(resolveApp("./emp-config.js"))) return;
 
   const pkg = require(resolveApp("./package.json"));
@@ -92,8 +98,8 @@ const generateJSON = () => {
   const version = process.env.NEXT_VERSION || pkg.version;
   const { ProjectConfig } = require(resolveApp("empconfig/project-config.js"));
   const scope = pkg.name.split("/")[0];
-  writeFileSync(
-    resolveApp("./dist/emp-docgen.json"),
+  outputFileSync(
+    resolveLocal("./.cache/.docgen/emp.docgen.json"),
     JSON.stringify({
       projectConfig: ProjectConfig,
       version,
@@ -289,12 +295,24 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
               // Assume webpack 4 or earlier
               processModule(docGenParser, module, tsProgram, generateOptions);
             }
-
-            generateJSON();
           });
+          generateJSON();
         });
       }
     );
+    const isDev = process.env.npm_lifecycle_script?.includes("emp dev");
+
+    const copyPlugin = new CopyPlugin({
+      patterns: [
+        {
+          from: "./**/*",
+          context: exports.resolveLocal(".cache/.docgen"),
+          to: isDev ? "./dist/.docgen" : "./.docgen"
+          // ignore: [".DS_Store", ".gitkeep"]
+        }
+      ]
+    });
+    copyPlugin.apply(compiler);
   }
 
   getOptions(): {

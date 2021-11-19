@@ -1,6 +1,6 @@
 /* eslint-disable  */
 
-import type { DocgenPluginType, PluginOptions } from "./plugin";
+import { DocgenPluginType, PluginOptions } from "./plugin";
 
 class EmptyPlugin {
   constructor(_: PluginOptions) {}
