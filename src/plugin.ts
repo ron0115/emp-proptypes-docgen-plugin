@@ -42,6 +42,7 @@ export type PluginOptions = docGen.ParserOptions &
     exclude?: string[];
     /** Glob patterns to include. defaults to ts|tsx */
     include?: string[];
+    outputDir?: string;
   };
 
 /** Get the contents of the tsconfig in the system */
@@ -301,14 +302,14 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
         });
       }
     );
-    const isDev = process.env.npm_lifecycle_script?.includes("emp dev");
+    // const isDev = process.env.npm_lifecycle_script?.includes("emp dev");
     if (existsSync(resolveLocal(".cache/.docgen"))) {
       const copyPlugin = new CopyPlugin({
         patterns: [
           {
             from: "./**/*",
             context: resolveLocal(".cache/.docgen"),
-            to: isDev ? "./dist/.docgen" : "./.docgen"
+            to: this.options.outputDir || resolveApp("./dist")
             // ignore: [".DS_Store", ".gitkeep"]
           }
         ]
