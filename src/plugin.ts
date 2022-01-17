@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
@@ -96,12 +97,12 @@ const generateJSON = () => {
   const pkg = require(resolveApp("./package.json"));
 
   const version = process.env.NEXT_VERSION || pkg.version;
-  const { ProjectConfig } = require(resolveApp("empconfig/project-config.js"));
+  // const { ProjectConfig } = require(resolveApp("empconfig/project-config.js"));
   const scope = pkg.name.split("/")[0];
   outputFileSync(
     resolveLocal("./.cache/.docgen/emp.docgen.json"),
     JSON.stringify({
-      projectConfig: ProjectConfig,
+      // projectConfig: ProjectConfig,
       version,
       // 最好是拿nextversion的tag，不跟发布插件耦合
       versionTag: version.match(/\d+.\d+.\d+-(\S+)\.\d+/)[1],
