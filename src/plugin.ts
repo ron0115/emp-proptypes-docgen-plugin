@@ -104,7 +104,8 @@ const generateJSON = () => {
     resolveLocal("./.cache/.docgen/emp.docgen.json"),
     JSON.stringify({
       // projectConfig: ProjectConfig,
-      version,
+      // version,
+      packageName: pkg.name,
       // 最好是拿nextversion的tag，不跟发布插件耦合
       versionTag: version.match(/\d+.\d+.\d+-(\S+)\.\d+/)[1],
       docgens: (global as any).docgens,
