@@ -18,6 +18,7 @@ yarn add -D emp-proptypes-docgen-plugin
 ```ts
 const ts = require("typescript");
 const EmpPropTypesDocgenPlugin = require("emp-proptypes-docgen-plugin").default;
+const {node_modulesPropFilter} = require("emp-proptypes-docgen-plugin");
 
 module.exports = {
   plugins: [
@@ -28,6 +29,15 @@ module.exports = {
     // or with compiler options
     new EmpPropTypesDocgenPlugin({
       compilerOptions: { jsx: ts.JsxEmit.Preserve }
+    })
+    // 新版默认关闭组件内联挂载，需要手动开启
+    new EmpPropTypesDocgenPlugin({
+      inlineWithComponent: true
+    })
+    new EmpPropTypesDocgenPlugin({
+      include: [path.resolve(__dirname, './src/**/*.tsx')],
+      // 忽略node_modules的ts生成，用于缩减产物大小
+      propFilter: node_modulesPropFilter(prop)
     })
   ]
 };
@@ -53,7 +63,11 @@ module.exports = {
 
 ## 例子
 
-### 生成组件名称和描述
+### 分离到 emp.docgen.json
+
+### 组件内联生成例子
+
+#### 生成组件名称和描述
 
 即`empPropTypes.defined.description`
 

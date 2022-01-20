@@ -3,7 +3,7 @@ import path from "path";
 import { parse, ParserOptions } from "react-docgen-typescript/lib/parser.js";
 import {
   generateDocgenCodeBlock,
-  GeneratorOptions,
+  GeneratorOptions
 } from "../generateDocgenCodeBlock";
 
 function getGeneratorOptions(parserOptions: ParserOptions = {}) {
@@ -16,13 +16,14 @@ function getGeneratorOptions(parserOptions: ParserOptions = {}) {
       componentDocs: parse(filePath, {
         ...parserOptions,
         componentNameResolver: (exp, source) => {
-          const componentName = exp.getName()
-          return typeof componentName  === 'string' ? componentName : undefined
-        },
+          const componentName = exp.getName();
+          return typeof componentName === "string" ? componentName : undefined;
+        }
       }),
       docgenCollectionName: null,
       setDisplayName: true,
       typePropName: "type",
+      inlineWithComponent: true
     } as GeneratorOptions;
   };
 }
@@ -59,9 +60,9 @@ it("generates value info for enums", () => {
         shouldIncludePropTagMap: true,
         shouldRemoveUndefinedFromOptional: true,
         componentNameResolver: (exp, source) => {
-          const componentName = exp.getName()
-          return typeof componentName  === 'string' ? componentName : undefined
-        },
+          const componentName = exp.getName();
+          return typeof componentName === "string" ? componentName : undefined;
+        }
       })("DefaultPropValue.tsx")
     )
   ).toMatchSnapshot();

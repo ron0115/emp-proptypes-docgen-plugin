@@ -9,6 +9,7 @@ export interface GeneratorOptions {
   componentDocs: ComponentDoc[];
   setDisplayName: boolean;
   typePropName: string;
+  inlineWithComponent?: boolean;
 }
 // eslint-disable-next-line no-shadow
 enum EmpPropTypes {
@@ -409,31 +410,36 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
       undefined
     );
 
-  const codeBlocks = options.componentDocs
-    // 过滤export default
-    .filter((d) => d.displayName !== "__function")
-    .map((d) =>
-      wrapInTryStatement(
-        [
-          options.setDisplayName ? setDisplayName(d) : null,
-          setComponentDocGen(d, options)
-        ].filter((s) => s !== null) as ts.Statement[]
-      )
+  let result;
+  if (options.inlineWithComponent) {
+    const codeBlocks = options.componentDocs
+      // 过滤export default
+      .filter((d) => d.displayName !== "__function")
+      .map((d) =>
+        wrapInTryStatement(
+          [
+            options.setDisplayName ? setDisplayName(d) : null,
+            setComponentDocGen(d, options)
+          ].filter((s) => s !== null) as ts.Statement[]
+        )
+      );
+
+    const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
+    const printNode = (sourceNode: ts.Node) =>
+      printer.printNode(ts.EmitHint.Unspecified, sourceNode, sourceFile);
+
+    // Concat original source code with code from generated code blocks.
+    result = codeBlocks.reduce(
+      (acc, node) => `${acc}\n${printNode(node)}`,
+
+      // Use original source text rather than using printNode on the parsed form
+      // to prevent issue where literals are stripped within components.
+      // Ref: https://github.com/strothj/react-docgen-typescript-loader/issues/7
+      options.source
     );
-
-  const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-  const printNode = (sourceNode: ts.Node) =>
-    printer.printNode(ts.EmitHint.Unspecified, sourceNode, sourceFile);
-
-  // Concat original source code with code from generated code blocks.
-  const result = codeBlocks.reduce(
-    (acc, node) => `${acc}\n${printNode(node)}`,
-
-    // Use original source text rather than using printNode on the parsed form
-    // to prevent issue where literals are stripped within components.
-    // Ref: https://github.com/strothj/react-docgen-typescript-loader/issues/7
-    options.source
-  );
+  } else {
+    result = "";
+  }
 
   if (!(global as any).docgens) {
     (global as any).docgens = [];

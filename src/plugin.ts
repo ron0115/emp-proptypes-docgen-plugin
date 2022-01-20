@@ -43,6 +43,7 @@ export type PluginOptions = docGen.ParserOptions &
     /** Glob patterns to include. defaults to ts|tsx */
     include?: string[];
     outputDir?: string;
+    inlineWithComponent?: boolean;
   };
 
 /** Get the contents of the tsconfig in the system */
@@ -120,7 +121,8 @@ function processModule(
   parser: docGen.FileParser,
   webpackModule: webpack.Module,
   tsProgram: ts.Program,
-  loaderOptions: Required<LoaderOptions>
+  loaderOptions: Required<LoaderOptions>,
+  inlineWithComponent?: boolean
 ) {
   if (!webpackModule) {
     return;
@@ -163,6 +165,7 @@ function processModule(
     filename: userRequest,
     source: userRequest,
     componentDocs,
+    inlineWithComponent,
     ...loaderOptions
   }).substring(userRequest.length);
 
@@ -290,13 +293,20 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
                       name,
                       () => tsProgram
                     ),
+                    inlineWithComponent: this.options.inlineWithComponent,
                     ...generateOptions
                   }).substring(name.length)
                 )
               );
             } else {
               // Assume webpack 4 or earlier
-              processModule(docGenParser, module, tsProgram, generateOptions);
+              processModule(
+                docGenParser,
+                module,
+                tsProgram,
+                generateOptions,
+                this.options.inlineWithComponent
+              );
             }
           });
           generateJSON();

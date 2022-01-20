@@ -1,5 +1,6 @@
 /* eslint-disable  */
 
+import { PropFilter } from "react-docgen-typescript/lib/parser";
 import { DocgenPluginType, PluginOptions } from "./plugin";
 
 class EmptyPlugin {
@@ -21,3 +22,15 @@ try {
 export { PluginOptions } from "./plugin";
 export { plugin as EmpPropTypesDocgenPlugin };
 export default plugin;
+
+export const node_modulesPropFilter: PropFilter = (prop) => {
+  if (prop.declarations !== undefined && prop.declarations.length > 0) {
+    const hasPropAdditionalDescription = prop.declarations.find(
+      (declaration) => {
+        return !declaration.fileName.includes("node_modules");
+      }
+    );
+    return Boolean(hasPropAdditionalDescription);
+  }
+  return false;
+};
