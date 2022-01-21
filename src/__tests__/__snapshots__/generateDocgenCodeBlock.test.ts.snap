@@ -1,17 +1,547 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`component fixture DefaultPropValue.tsx has code block generated 1`] = `""`;
+exports[`component fixture DefaultPropValue.tsx has code block generated 1`] = `
+"enum EmpPropTypes {
+  /** 输入框 */
+  Input = \\"Input\\",
+  InputNumber = \\"InputNumber\\",
+  Slider = \\"Slider\\",
+  Radio = \\"Radio\\",
+  RadioGroup = \\"RadioGroup\\",
+  Select = \\"Select\\",
+  Switch = \\"Switch\\",
+  TimePicker = \\"TimePicker\\",
+  /** 日期选择 */
+  DatePicker = \\"DatePicker\\",
+  RangePicker = \\"RangePicker\\",
+  ColorPicker = \\"ColorPicker\\",
+  Upload = \\"Upload\\",
+  RichText = \\"RichText\\",
+  StyleEdit = \\"StyleEdit\\"
+}
 
-exports[`component fixture HyphenatedPropName.tsx has code block generated 1`] = `""`;
+import { genStyles } from \\"@/utils\\";
+import React, {
+  CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useState
+} from \\"react\\";
+import defaultStyles from \\"./index.module.scss\\";
+// type Item = {
+//   avatar: string;
+// };
+export type CircleProgressType = {
+  r: number;
+  percent?: number;
+  strokeWidth?: number;
+  borderOffset?: number;
+  visible?: boolean;
+  edgeSlot?: React.ReactNode;
+  centerSlot?: React.ReactNode;
+  edgeStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
+  centerStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
+  /**
+   *  @type { EmpPropTypes.Upload }
+   *  @default www.baidu.com
+   *  @desc 图标地址
+   */
+  iconUrl: string;
+  /**
+   *  @type {EmpPropTypes.StyleEdit}
+   */
+  style?: CSSProperties;
 
-exports[`component fixture MultiProps.tsx has code block generated 1`] = `""`;
+  theme: EmpPropTypes;
+  // item: Item;
+};
 
-exports[`component fixture MultilineDescription.tsx has code block generated 1`] = `""`;
+const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
+/**
+ * @desc 环形进度条
+ * @label 环形进度条
+ * */
+export const CircleProgress = ({
+  r,
+  percent = 0,
+  strokeWidth = 8,
+  borderOffset = 4,
+  visible = false,
+  edgeSlot,
+  centerSlot,
+  centerStyle,
+  edgeStyle: edgeStyleProps,
+  ...otherProps
+}: CircleProgressType) => {
+  const [edgeStyle, setEdgeStyle] = useState({
+    transform: \\"\\"
+  });
 
-exports[`component fixture MultilinePropDescription.tsx has code block generated 1`] = `""`;
+  const size = {
+    width: 2 * r + 2 * strokeWidth + 2 * borderOffset,
+    height: 2 * r + 2 * strokeWidth + 2 * borderOffset
+  };
 
-exports[`component fixture Simple.tsx has code block generated 1`] = `""`;
+  // 定位edge的位置
+  const perimeter = 2 * r * Math.PI;
+  const strokeDashoffset = perimeter * (1 - percent);
+  const offsetR = r + strokeWidth + borderOffset;
+  const circleStyle = {
+    strokeWidth: strokeWidth + \\"px\\"
+  };
+  const circleProps = {
+    r: r,
+    cx: offsetR,
+    cy: offsetR
+  };
+  // centerXAxis
+  const a = offsetR;
+  // centerYAxis
+  const b = offsetR;
 
-exports[`component fixture TextOnlyComponent.tsx has code block generated 1`] = `""`;
+  // const edgeY = b - offsetR * Math.sqrt(1 - Math.sin(360 * percent) ** 2)
+  // const edgeX = a + offsetR * Math.sin(360 * percent)
+  // 逆时针，所以x用gsin，y用cos
+  const edgeX = a + offsetR * Math.sin((360 * percent * Math.PI) / 180);
+  const edgeY = b - offsetR * Math.cos((360 * percent * Math.PI) / 180);
 
-exports[`generates value info for enums 1`] = `""`;
+  // 修正edge的位置
+  useEffect(() => {
+    let transform = \\"\\";
+    if (percent > 0.5 && percent <= 1) {
+      transform += \`translateX(-100%)\`;
+    }
+
+    if ((percent >= 0 && percent < 0.25) || (percent > 0.75 && percent <= 1)) {
+      transform += \`translateY(-100%)\`;
+    }
+    setEdgeStyle({
+      transform
+    });
+  }, [percent]);
+
+  // if (p)
+  return (
+    <div
+      className={styles.container}
+      {...otherProps}
+      style={{
+        width: size.width + \\"px\\",
+        height: size.height + \\"px\\",
+        display: visible ? \\"block\\" : \\"none\\"
+        // ...otherProps.style,
+      }}
+    >
+      <svg
+        className={styles.svg}
+        {...size}
+        // viewPort=\\"0 0 100 100\\"
+        // version=\\"1.1\\"
+        // xmlns=\\"http://www.w3.org/2000/svg\\"
+      >
+        <circle
+          className={styles.circle}
+          {...circleProps}
+          fill=\\"transparent\\"
+          strokeDasharray={2 * r * Math.PI}
+          strokeDashoffset=\\"0\\"
+          style={circleStyle}
+        />
+        <circle
+          className={styles.bar}
+          style={circleStyle}
+          {...circleProps}
+          // 中间是透明
+          fill=\\"transparent\\"
+          strokeDasharray={2 * r * Math.PI}
+          strokeDashoffset={strokeDashoffset}
+          transform={\`rotate(-90, \${offsetR}, \${offsetR})\`}
+        />
+      </svg>
+      <div className={styles.centerSlot} style={centerStyle}>
+        {centerSlot}
+      </div>
+      <div
+        // ref={edgeRef}
+        className={styles.edge}
+        style={{
+          position: \\"absolute\\",
+          left: edgeX + \\"px\\",
+          top: edgeY + \\"px\\",
+          ...edgeStyle,
+          ...edgeStyleProps
+        }}
+      >
+        {edgeSlot}
+      </div>
+    </div>
+  );
+};
+export default CircleProgress;
+
+try {
+    // @ts-ignore
+    CircleProgress.displayName = \\"CircleProgress\\";
+    // @ts-ignore
+    if (!CircleProgress.empPropTypes) {
+        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": false, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"false\\", \\"label\\": \\"false\\" }, { \\"value\\": \\"true\\", \\"label\\": \\"true\\" }] } }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"theme\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"theme\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"Input\\", \\"label\\": \\"\\\\u8F93\\\\u5165\\\\u6846\\" }, { \\"value\\": \\"InputNumber\\", \\"label\\": \\"InputNumber\\" }, { \\"value\\": \\"Slider\\", \\"label\\": \\"Slider\\" }, { \\"value\\": \\"Radio\\", \\"label\\": \\"Radio\\" }, { \\"value\\": \\"RadioGroup\\", \\"label\\": \\"RadioGroup\\" }, { \\"value\\": \\"Select\\", \\"label\\": \\"Select\\" }, { \\"value\\": \\"Switch\\", \\"label\\": \\"Switch\\" }, { \\"value\\": \\"TimePicker\\", \\"label\\": \\"TimePicker\\" }, { \\"value\\": \\"DatePicker\\", \\"label\\": \\"\\\\u65E5\\\\u671F\\\\u9009\\\\u62E9\\" }, { \\"value\\": \\"RangePicker\\", \\"label\\": \\"RangePicker\\" }, { \\"value\\": \\"ColorPicker\\", \\"label\\": \\"ColorPicker\\" }, { \\"value\\": \\"Upload\\", \\"label\\": \\"Upload\\" }, { \\"value\\": \\"RichText\\", \\"label\\": \\"RichText\\" }, { \\"value\\": \\"StyleEdit\\", \\"label\\": \\"StyleEdit\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture HyphenatedPropName.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+interface HyphenatedPropNameProps {
+  /** Button color. */
+  \\"button-color\\": \\"blue\\" | \\"green\\";
+}
+
+/**
+ * A component with a hyphenated prop name.
+ */
+export const HyphenatedPropNameComponent: React.FC<HyphenatedPropNameProps> = (
+  props
+) => (
+  <button style={{ backgroundColor: props[\\"button-color\\"] }}>
+    {props.children}
+  </button>
+);
+
+try {
+    // @ts-ignore
+    HyphenatedPropNameComponent.displayName = \\"HyphenatedPropNameComponent\\";
+    // @ts-ignore
+    if (!HyphenatedPropNameComponent.empPropTypes) {
+        HyphenatedPropNameComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a hyphenated prop name.\\" }, \\"name\\": \\"HyphenatedPropNameComponent\\", \\"props\\": { \\"button-color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"button-color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\", \\"label\\": \\"blue\\" }, { \\"value\\": \\"green\\", \\"label\\": \\"green\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture MultiProps.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+interface MultiPropsComponentProps {
+  /** Button color. */
+  color: \\"blue\\" | \\"green\\";
+
+  /** Button size. */
+  size: \\"small\\" | \\"large\\";
+}
+
+/**
+ * This is a component with multiple props.
+ */
+export const MultiPropsComponent: React.FC<MultiPropsComponentProps> = (
+  props
+) => <button style={{ backgroundColor: props.color }}>{props.children}</button>;
+
+try {
+    // @ts-ignore
+    MultiPropsComponent.displayName = \\"MultiPropsComponent\\";
+    // @ts-ignore
+    if (!MultiPropsComponent.empPropTypes) {
+        MultiPropsComponent.empPropTypes = { \\"defined\\": { description: \\"This is a component with multiple props.\\" }, \\"name\\": \\"MultiPropsComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\", \\"label\\": \\"blue\\" }, { \\"value\\": \\"green\\", \\"label\\": \\"green\\" }] } }, \\"size\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"size\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"small\\", \\"label\\": \\"small\\" }, { \\"value\\": \\"large\\", \\"label\\": \\"large\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture MultilineDescription.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+interface MultilineDescriptionProps {
+  /** Button color. */
+  color: \\"blue\\" | \\"green\\";
+}
+
+/**
+ * A component with a multiline description.
+ *
+ * Second line.
+ */
+export const MultilineDescriptionComponent: React.FC<MultilineDescriptionProps> = (
+  props
+) => <button style={{ backgroundColor: props.color }}>{props.children}</button>;
+
+try {
+    // @ts-ignore
+    MultilineDescriptionComponent.displayName = \\"MultilineDescriptionComponent\\";
+    // @ts-ignore
+    if (!MultilineDescriptionComponent.empPropTypes) {
+        MultilineDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with a multiline description.\\\\n\\\\nSecond line.\\" }, \\"name\\": \\"MultilineDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\", \\"label\\": \\"blue\\" }, { \\"value\\": \\"green\\", \\"label\\": \\"green\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture MultilinePropDescription.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+interface MultilinePropDescriptionComponentProps {
+  /**
+   * This is a multiline prop description.
+   *
+   * Second line.
+   */
+  color: \\"blue\\" | \\"green\\";
+}
+
+/**
+ * A component with multiline prop description.
+ */
+export const MultilinePropDescriptionComponent: React.FC<MultilinePropDescriptionComponentProps> = (
+  props
+) => <button style={{ backgroundColor: props.color }}>{props.children}</button>;
+
+try {
+    // @ts-ignore
+    MultilinePropDescriptionComponent.displayName = \\"MultilinePropDescriptionComponent\\";
+    // @ts-ignore
+    if (!MultilinePropDescriptionComponent.empPropTypes) {
+        MultilinePropDescriptionComponent.empPropTypes = { \\"defined\\": { description: \\"A component with multiline prop description.\\" }, \\"name\\": \\"MultilinePropDescriptionComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\", \\"label\\": \\"blue\\" }, { \\"value\\": \\"green\\", \\"label\\": \\"green\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture Simple.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+interface SimpleComponentProps {
+  /** Button color. */
+  color: \\"blue\\" | \\"green\\";
+}
+
+/**
+ * A simple component.
+ */
+export const SimpleComponent: React.FC<SimpleComponentProps> = (props) => (
+  <button style={{ backgroundColor: props.color }}>{props.children}</button>
+);
+
+try {
+    // @ts-ignore
+    SimpleComponent.displayName = \\"SimpleComponent\\";
+    // @ts-ignore
+    if (!SimpleComponent.empPropTypes) {
+        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A simple component.\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": { \\"color\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"color\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"blue\\", \\"label\\": \\"blue\\" }, { \\"value\\": \\"green\\", \\"label\\": \\"green\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`component fixture TextOnlyComponent.tsx has code block generated 1`] = `
+"import * as React from \\"react\\";
+
+/**
+ * A component with only text content wrapped in a div.
+ *
+ * Ref: https://github.com/strothj/react-docgen-typescript-loader/issues/7
+ */
+export const SimpleComponent: React.FC<{}> = () => (
+  <div>Test only component</div>
+);
+
+try {
+    // @ts-ignore
+    SimpleComponent.displayName = \\"SimpleComponent\\";
+    // @ts-ignore
+    if (!SimpleComponent.empPropTypes) {
+        SimpleComponent.empPropTypes = { \\"defined\\": { description: \\"A component with only text content wrapped in a div.\\\\n\\\\nRef: https://github.com/strothj/react-docgen-typescript-loader/issues/7\\" }, \\"name\\": \\"SimpleComponent\\", \\"props\\": {} };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
+
+exports[`generates value info for enums 1`] = `
+"enum EmpPropTypes {
+  /** 输入框 */
+  Input = \\"Input\\",
+  InputNumber = \\"InputNumber\\",
+  Slider = \\"Slider\\",
+  Radio = \\"Radio\\",
+  RadioGroup = \\"RadioGroup\\",
+  Select = \\"Select\\",
+  Switch = \\"Switch\\",
+  TimePicker = \\"TimePicker\\",
+  /** 日期选择 */
+  DatePicker = \\"DatePicker\\",
+  RangePicker = \\"RangePicker\\",
+  ColorPicker = \\"ColorPicker\\",
+  Upload = \\"Upload\\",
+  RichText = \\"RichText\\",
+  StyleEdit = \\"StyleEdit\\"
+}
+
+import { genStyles } from \\"@/utils\\";
+import React, {
+  CSSProperties,
+  HTMLAttributes,
+  useEffect,
+  useState
+} from \\"react\\";
+import defaultStyles from \\"./index.module.scss\\";
+// type Item = {
+//   avatar: string;
+// };
+export type CircleProgressType = {
+  r: number;
+  percent?: number;
+  strokeWidth?: number;
+  borderOffset?: number;
+  visible?: boolean;
+  edgeSlot?: React.ReactNode;
+  centerSlot?: React.ReactNode;
+  edgeStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
+  centerStyle?: React.HTMLAttributes<HTMLDivElement>[\\"style\\"];
+  /**
+   *  @type { EmpPropTypes.Upload }
+   *  @default www.baidu.com
+   *  @desc 图标地址
+   */
+  iconUrl: string;
+  /**
+   *  @type {EmpPropTypes.StyleEdit}
+   */
+  style?: CSSProperties;
+
+  theme: EmpPropTypes;
+  // item: Item;
+};
+
+const styles = genStyles(\\"ge-circle-progress\\", defaultStyles);
+/**
+ * @desc 环形进度条
+ * @label 环形进度条
+ * */
+export const CircleProgress = ({
+  r,
+  percent = 0,
+  strokeWidth = 8,
+  borderOffset = 4,
+  visible = false,
+  edgeSlot,
+  centerSlot,
+  centerStyle,
+  edgeStyle: edgeStyleProps,
+  ...otherProps
+}: CircleProgressType) => {
+  const [edgeStyle, setEdgeStyle] = useState({
+    transform: \\"\\"
+  });
+
+  const size = {
+    width: 2 * r + 2 * strokeWidth + 2 * borderOffset,
+    height: 2 * r + 2 * strokeWidth + 2 * borderOffset
+  };
+
+  // 定位edge的位置
+  const perimeter = 2 * r * Math.PI;
+  const strokeDashoffset = perimeter * (1 - percent);
+  const offsetR = r + strokeWidth + borderOffset;
+  const circleStyle = {
+    strokeWidth: strokeWidth + \\"px\\"
+  };
+  const circleProps = {
+    r: r,
+    cx: offsetR,
+    cy: offsetR
+  };
+  // centerXAxis
+  const a = offsetR;
+  // centerYAxis
+  const b = offsetR;
+
+  // const edgeY = b - offsetR * Math.sqrt(1 - Math.sin(360 * percent) ** 2)
+  // const edgeX = a + offsetR * Math.sin(360 * percent)
+  // 逆时针，所以x用gsin，y用cos
+  const edgeX = a + offsetR * Math.sin((360 * percent * Math.PI) / 180);
+  const edgeY = b - offsetR * Math.cos((360 * percent * Math.PI) / 180);
+
+  // 修正edge的位置
+  useEffect(() => {
+    let transform = \\"\\";
+    if (percent > 0.5 && percent <= 1) {
+      transform += \`translateX(-100%)\`;
+    }
+
+    if ((percent >= 0 && percent < 0.25) || (percent > 0.75 && percent <= 1)) {
+      transform += \`translateY(-100%)\`;
+    }
+    setEdgeStyle({
+      transform
+    });
+  }, [percent]);
+
+  // if (p)
+  return (
+    <div
+      className={styles.container}
+      {...otherProps}
+      style={{
+        width: size.width + \\"px\\",
+        height: size.height + \\"px\\",
+        display: visible ? \\"block\\" : \\"none\\"
+        // ...otherProps.style,
+      }}
+    >
+      <svg
+        className={styles.svg}
+        {...size}
+        // viewPort=\\"0 0 100 100\\"
+        // version=\\"1.1\\"
+        // xmlns=\\"http://www.w3.org/2000/svg\\"
+      >
+        <circle
+          className={styles.circle}
+          {...circleProps}
+          fill=\\"transparent\\"
+          strokeDasharray={2 * r * Math.PI}
+          strokeDashoffset=\\"0\\"
+          style={circleStyle}
+        />
+        <circle
+          className={styles.bar}
+          style={circleStyle}
+          {...circleProps}
+          // 中间是透明
+          fill=\\"transparent\\"
+          strokeDasharray={2 * r * Math.PI}
+          strokeDashoffset={strokeDashoffset}
+          transform={\`rotate(-90, \${offsetR}, \${offsetR})\`}
+        />
+      </svg>
+      <div className={styles.centerSlot} style={centerStyle}>
+        {centerSlot}
+      </div>
+      <div
+        // ref={edgeRef}
+        className={styles.edge}
+        style={{
+          position: \\"absolute\\",
+          left: edgeX + \\"px\\",
+          top: edgeY + \\"px\\",
+          ...edgeStyle,
+          ...edgeStyleProps
+        }}
+      >
+        {edgeSlot}
+      </div>
+    </div>
+  );
+};
+export default CircleProgress;
+
+try {
+    // @ts-ignore
+    CircleProgress.displayName = \\"CircleProgress\\";
+    // @ts-ignore
+    if (!CircleProgress.empPropTypes) {
+        CircleProgress.empPropTypes = { \\"defined\\": { description: \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\" }, \\"name\\": \\"\\\\u73AF\\\\u5F62\\\\u8FDB\\\\u5EA6\\\\u6761\\", \\"props\\": { \\"r\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"r\\", \\"required\\": true, \\"type\\": \\"InputNumber\\" }, \\"percent\\": { \\"defaultValue\\": 0, \\"description\\": \\"\\", \\"label\\": \\"percent\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"strokeWidth\\": { \\"defaultValue\\": 8, \\"description\\": \\"\\", \\"label\\": \\"strokeWidth\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"borderOffset\\": { \\"defaultValue\\": 4, \\"description\\": \\"\\", \\"label\\": \\"borderOffset\\", \\"required\\": false, \\"type\\": \\"InputNumber\\" }, \\"visible\\": { \\"defaultValue\\": false, \\"description\\": \\"\\", \\"label\\": \\"visible\\", \\"required\\": false, \\"type\\": \\"Switch\\" }, \\"edgeSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"centerSlot\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerSlot\\", \\"required\\": false, \\"type\\": \\"Input\\" }, \\"edgeStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"edgeStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"centerStyle\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"centerStyle\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"iconUrl\\": { \\"defaultValue\\": \\"www.baidu.com\\", \\"description\\": \\"\\\\u56FE\\\\u6807\\\\u5730\\\\u5740\\", \\"label\\": \\"iconUrl\\", \\"required\\": true, \\"type\\": \\"Upload\\" }, \\"style\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"style\\", \\"required\\": false, \\"type\\": \\"StyleEdit\\" }, \\"theme\\": { \\"defaultValue\\": null, \\"description\\": \\"\\", \\"label\\": \\"theme\\", \\"required\\": true, \\"type\\": \\"Select\\", \\"options\\": { options: [{ \\"value\\": \\"Input\\", \\"label\\": \\"\\\\u8F93\\\\u5165\\\\u6846\\" }, { \\"value\\": \\"InputNumber\\", \\"label\\": \\"InputNumber\\" }, { \\"value\\": \\"Slider\\", \\"label\\": \\"Slider\\" }, { \\"value\\": \\"Radio\\", \\"label\\": \\"Radio\\" }, { \\"value\\": \\"RadioGroup\\", \\"label\\": \\"RadioGroup\\" }, { \\"value\\": \\"Select\\", \\"label\\": \\"Select\\" }, { \\"value\\": \\"Switch\\", \\"label\\": \\"Switch\\" }, { \\"value\\": \\"TimePicker\\", \\"label\\": \\"TimePicker\\" }, { \\"value\\": \\"DatePicker\\", \\"label\\": \\"\\\\u65E5\\\\u671F\\\\u9009\\\\u62E9\\" }, { \\"value\\": \\"RangePicker\\", \\"label\\": \\"RangePicker\\" }, { \\"value\\": \\"ColorPicker\\", \\"label\\": \\"ColorPicker\\" }, { \\"value\\": \\"Upload\\", \\"label\\": \\"Upload\\" }, { \\"value\\": \\"RichText\\", \\"label\\": \\"RichText\\" }, { \\"value\\": \\"StyleEdit\\", \\"label\\": \\"StyleEdit\\" }] } } } };
+    }
+}
+catch (__react_docgen_typescript_loader_error) { }"
+`;
