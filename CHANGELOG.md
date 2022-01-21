@@ -1,3 +1,16 @@
+# v0.0.30 (Thu Jan 20 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- feat: 默认输出json，内联到组件需要指定inlineWithComponent ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.29 (Tue Jan 18 2022)
 
 #### ⚠️ Pushed to `master`
