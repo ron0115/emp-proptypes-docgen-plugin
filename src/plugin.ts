@@ -13,14 +13,14 @@ import flatCache from "flat-cache";
 import crypto from "crypto";
 
 // Import fs from "fs";
-import { outputFileSync, existsSync } from "fs-extra";
+// import { outputFileSync, existsSync } from "fs-extra";
 import { LoaderOptions } from "./types";
 import {
   generateDocgenCodeBlock,
   GeneratorOptions
 } from "./generateDocgenCodeBlock";
 
-const CopyPlugin = require("copy-webpack-plugin");
+// const CopyPlugin = require("copy-webpack-plugin");
 
 const debugExclude = createDebug("docgen:exclude");
 const debugInclude = createDebug("docgen:include");
@@ -94,25 +94,18 @@ export const resolveLocal = (relativePath: string) => {
 };
 
 const generateJSON = () => {
-  if (!existsSync(resolveApp("./emp-config.js"))) return;
-
   const pkg = require(resolveApp("./package.json"));
+  const version = (process.env.NEXT_VERSION || pkg.version) as string;
 
-  const version = process.env.NEXT_VERSION || pkg.version;
-  // const { ProjectConfig } = require(resolveApp("empconfig/project-config.js"));
-  const scope = pkg.name.split("/")[0];
-  outputFileSync(
-    resolveLocal("./.cache/.docgen/emp.docgen.json"),
-    JSON.stringify({
-      // projectConfig: ProjectConfig,
-      // version,
-      packageName: pkg.name,
-      // 最好是拿nextversion的tag，不跟发布插件耦合
-      versionTag: version.match(/\d+.\d+.\d+-(\S+)\.\d+/)[1],
-      docgens: (global as any).docgens,
-      scope
-    })
-  );
+  const scope = (pkg.name as string).split("/")[0];
+  const jsonStr = JSON.stringify({
+    packageName: pkg.name,
+    // 最好是拿nextversion的tag，不跟发布插件耦合
+    versionTag: version.match(/\d+.\d+.\d+-(\S+)\.\d+/)?.[1],
+    docgens: (global as any).docgens,
+    scope
+  });
+  return jsonStr;
 };
 
 /** Run the docgen parser and inject the result into the output */
@@ -309,24 +302,39 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
               );
             }
           });
-          generateJSON();
+          // 参考：https://github.com/jacob-ebey/webpack-federated-stats-plugin/blob/main/index.js
+          const jsonStr = generateJSON();
+
+          const jsonBuffer = Buffer.from(jsonStr, "utf-8");
+
+          const jsonSource = {
+            source: () => jsonBuffer,
+            size: () => jsonBuffer.length
+          };
+          const outputDir = this.options.outputDir || "emp.docgen.json";
+          const asset = compilation.getAsset(outputDir);
+          if (asset) {
+            compilation.updateAsset(outputDir, jsonSource as any);
+          } else {
+            compilation.emitAsset(outputDir, jsonSource as any);
+          }
         });
       }
     );
     // const isDev = process.env.npm_lifecycle_script?.includes("emp dev");
-    if (existsSync(resolveLocal(".cache/.docgen"))) {
-      const copyPlugin = new CopyPlugin({
-        patterns: [
-          {
-            from: "./**/*",
-            context: resolveLocal(".cache/.docgen"),
-            to: this.options.outputDir || resolveApp("./dist")
-            // ignore: [".DS_Store", ".gitkeep"]
-          }
-        ]
-      });
-      copyPlugin.apply(compiler);
-    }
+    // if (existsSync(resolveLocal(".cache/.docgen"))) {
+    //   const copyPlugin = new CopyPlugin({
+    //     patterns: [
+    //       {
+    //         from: "./**/*",
+    //         context: resolveLocal(".cache/.docgen"),
+    //         to: this.options.outputDir || resolveApp("./dist")
+    //         // ignore: [".DS_Store", ".gitkeep"]
+    //       }
+    //     ]
+    //   });
+    //   copyPlugin.apply(compiler);
+    // }
   }
 
   getOptions(): {
