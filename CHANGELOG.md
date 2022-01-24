@@ -1,3 +1,16 @@
+# v0.0.31 (Mon Jan 24 2022)
+
+#### ⚠️ Pushed to `master`
+
+- fix: 采用asset api生成json文件 ([@ron0115](https://github.com/ron0115))
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.30 (Thu Jan 20 2022)
 
 #### ⚠️ Pushed to `master`
