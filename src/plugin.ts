@@ -273,23 +273,27 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
               //
               // eslint-disable-next-line
               const { DocGenDependency } = require("./dependency");
+              const codeBlock = generateDocgenCodeBlock({
+                filename: name,
+                source: name,
+                // 从源文件，生成组件jsdoc的json对象
+                componentDocs: docGenParser.parseWithProgramProvider(
+                  name,
+                  () => tsProgram
+                ),
+                inlineWithComponent: this.options.inlineWithComponent,
+                ...generateOptions
+              }).substring(name.length);
+              if (!codeBlock) return;
+
+              const dep = new DocGenDependency(
+                // 从docGen插件生成的json对象，构建所需的ts-ast, 并转换成TS代码，追加到source末尾。
+                codeBlock
+              );
               module.addDependency(
+                dep
                 // eslint-disable-next-line
                 // @ts-ignore: Webpack 4 type
-                new DocGenDependency(
-                  // 从docGen插件生成的json对象，构建所需的ts-ast, 并转换成TS代码，追加到source末尾。
-                  generateDocgenCodeBlock({
-                    filename: name,
-                    source: name,
-                    // 从源文件，生成组件jsdoc的json对象
-                    componentDocs: docGenParser.parseWithProgramProvider(
-                      name,
-                      () => tsProgram
-                    ),
-                    inlineWithComponent: this.options.inlineWithComponent,
-                    ...generateOptions
-                  }).substring(name.length)
-                )
               );
             } else {
               // Assume webpack 4 or earlier
