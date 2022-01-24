@@ -1,3 +1,16 @@
+# v0.0.32 (Mon Jan 24 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- fix: 消除非inline模式下的warning ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.31 (Mon Jan 24 2022)
 
 #### ⚠️ Pushed to `master`
