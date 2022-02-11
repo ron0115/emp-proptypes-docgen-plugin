@@ -1,3 +1,16 @@
+# v0.0.34 (Fri Feb 11 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- fix: 修复dev hmr内存释放问题 ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.33 (Fri Feb 11 2022)
 
 #### ⚠️ Pushed to `master`
