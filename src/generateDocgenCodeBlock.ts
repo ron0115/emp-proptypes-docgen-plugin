@@ -445,7 +445,9 @@ export function generateDocgenCodeBlock(options: GeneratorOptions): string {
     (global as any).docgens = [];
   }
 
-  (global as any).docgens.push(options.componentDocs[0]);
+  options.componentDocs.forEach((item) => {
+    (global as any).docgens.push(item);
+  });
 
   return result;
 }
