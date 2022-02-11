@@ -195,11 +195,8 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
 
   apply(compiler: webpack.Compiler): void {
     const pluginName = "DocGenPlugin";
-    const {
-      docgenOptions,
-      compilerOptions,
-      generateOptions
-    } = this.getOptions();
+    const { docgenOptions, compilerOptions, generateOptions } =
+      this.getOptions();
     const docGenParser = docGen.withCompilerOptions(
       compilerOptions,
       docgenOptions
@@ -322,6 +319,9 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
           } else {
             compilation.emitAsset(outputDir, jsonSource as any);
           }
+
+          // 清空内存，在DEV模式下每次更新都要清空，避免多次hmr后体积膨胀
+          (global as any).docgens = [];
         });
       }
     );
