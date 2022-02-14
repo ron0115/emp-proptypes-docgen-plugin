@@ -321,7 +321,7 @@ export default class DocgenPlugin implements webpack.WebpackPluginInstance {
           }
 
           // 清空内存，在DEV模式下每次更新都要清空，避免多次hmr后体积膨胀
-          (global as any).docgens = [];
+          delete (global as any).docgens;
         });
       }
     );
