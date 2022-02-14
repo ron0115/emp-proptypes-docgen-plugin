@@ -1,3 +1,16 @@
+# v0.0.35 (Mon Feb 14 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/ron0115/emp-proptypes-docgen-plugin ([@ron0115](https://github.com/ron0115))
+- fix: 修复某些情况emit的报错 ([@ron0115](https://github.com/ron0115))
+
+#### Authors: 1
+
+- Ron0115 ([@ron0115](https://github.com/ron0115))
+
+---
+
 # v0.0.34 (Fri Feb 11 2022)
 
 #### ⚠️ Pushed to `master`
